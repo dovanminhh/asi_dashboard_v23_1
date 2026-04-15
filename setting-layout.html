@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Monitoring v23</title>
+    <!-- BEGIN Includes Styles  -->
+    <link rel="stylesheet" href="css/fa.min.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+    <link rel="stylesheet" href="node_modules/overlayscrollbars/styles/overlayscrollbars.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- END Includes Styles  -->
+</head>
+
+<body>
+    <!-- BEGIN Setting Page -->
+    <div class="layout-builder">
+        <!-- BEGIN Builder Toolbar -->
+        <div class="builder-toolbar">
+            <div class="d-flex align-items-center">
+                <div class="me-auto">
+                    <button class="btn btn-sm py-0" onclick="location.href='index.html';"><i
+                            class="fa-solid fa-arrow-left"></i> Trở lại</button>
+                </div>
+                <div class="ms-auto">
+                    <button class="btn btn-sm btn-outline-secondary py-0" id="btn-reset"><i
+                            class="fa-solid fa-rotate-right"></i>
+                        Mặc định</button> <button class="btn btn-sm btn-primary py-0" id="btn-save"><i
+                            class="fa-solid fa-floppy-disk"></i> Lưu</button>
+                </div>
+            </div>
+        </div><!-- END Builder Toolbar -->
+        <!-- BEGIN Components Preload -->
+        <div class="d-none">
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="1" data-name="Thông tin giao thông">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Thông tin giao thông</div>
+                    <div class="item-meta small opacity-50">Tuyến đường, an ninh</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="2" data-name="Thông tin thời tiết">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Thông tin thời tiết</div>
+                    <div class="item-meta small opacity-50">Thời tiết, Nhiệt độ, Độ ẩm</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="3" data-name="Đồng hồ">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Đồng hồ</div>
+                    <div class="item-meta small opacity-50">Ngày, giờ</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="6" data-name="Bản đồ - Thống kê bản đồ">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Thống kê bản đồ</div>
+                    <div class="item-meta small opacity-50">Camera, Đối tượng</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="7" data-name="Bản đồ - Sự cố sự kiện">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Đang diễn ra</div>
+                    <div class="item-meta small opacity-50">Sự cố sự kiện</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="8" data-name="Bản đồ - Mini Map">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Mini Map</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="9" data-name="Bản đồ - Trạng thái sự kiện">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Sự kiện khác</div>
+                    <div class="item-meta small opacity-50 text-truncate">Cứu hoả, dẫn đoàn, tuần tra</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="4" data-name="Thông tin sự cố">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Thông tin sự cố</div>
+                    <div class="item-meta small opacity-50">Giao thông, An ninh</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="5" data-name="Hệ thống nhận diện">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Hệ thống nhận diện</div>
+                    <div class="item-meta small opacity-50">Không mặt, phương tiện, sự việc</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="10" data-name="Thống kê - Lưu lượng giao thông">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Thống kê lưu lượng giao thông</div>
+                    <div class="item-meta small opacity-50">Điểm giao Ngã Tư sở</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="11" data-name="Thống kê - Vi phạm giao thông">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Thống kê vi phạm giao thông</div>
+                    <div class="item-meta small opacity-50">Tất cả các điểm</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="12" data-name="Thống kê - Vi phạm theo phương tiện">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Thống kê vi phạm theo phương tiện</div>
+                    <div class="item-meta small opacity-50">Tất cả các điểm</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="13" data-name="Thống kê - Vi phạm theo thể loại">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Thống kê vi phạm theo thể loại</div>
+                    <div class="item-meta small opacity-50">Tất cả các điểm</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="14" data-name="Bản đồ - Đối tượng">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Đối tượng trên bản đồ</div>
+                    <div class="item-meta small opacity-50">Địa điểm, cameras ...</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="15" data-name="Inactive Components">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">Inactive Components</div>
+                    <div class="item-meta small opacity-50">Thông tin </div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="24" data-name="ENAV - Bản đồ - Đối tượng">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Bản đồ - Đối tượng</div>
+                    <div class="item-meta small opacity-50">Thông tin đối tượng trên bản đồ</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="25" data-name="ENAV - Bản đồ - Thống kê bản đồ">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Bản đồ - Thống kê bản đồ</div>
+                    <div class="item-meta small opacity-50">Thông tin đối tượng trên bản đồ</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="26" data-name="ENAV - Thông tin thủy văn">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Thông tin thủy văn</div>
+                    <div class="item-meta small opacity-50">Thông tin thuỷ văn</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="27" data-name="ENAV - Hệ thống cảnh báo">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Hệ thống cảnh báo</div>
+                    <div class="item-meta small opacity-50">Thông tin cảnh báo khu vực cảng</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="28" data-name="ENAV - Hàng rào ảo">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Hàng rào ảo</div>
+                    <div class="item-meta small opacity-50">Trạng thái hàng rào ảo</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="29" data-name="ENAV - Thống kê - Tàu thuyền">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Thống kê - Tàu thuyền</div>
+                    <div class="item-meta small opacity-50">Thống kê phương tiện</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="30" data-name="ENAV - Thống kê - Phương tiện">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Thống kê - Xe</div>
+                    <div class="item-meta small opacity-50">Thống kê phương tiện</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="31" data-name="ENAV - Thống kê - Lượt người ra vào cảng">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Thống kê - Lượt người ra vào cảng</div>
+                    <div class="item-meta small opacity-50">Thống kê người ra vào cảng</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+
+            <!-- BEGIN Item -->
+            <div class="component-item" data-id="32" data-name="ENAV - Thông tin hệ thống">
+                <div class="item-dragable-handle dragable-handle"><i class="fa-solid fa-grip-vertical"></i></div>
+                <div class="item-content">
+                    <div class="item-title mb-0">ENAV - Quản lý hệ thống</div>
+                    <div class="item-meta small opacity-50">Thông tin hệ thống</div>
+                </div>
+                <div class="item-action">
+                    <button class="btn btn-sm btn-24 rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#componentConfigModal"><i class="fa-solid fa-gear"></i></button>
+                </div>
+            </div><!-- END Item -->
+        </div> <!-- END Components Preload -->
+        <!-- BEGIN App Layout -->
+        <div class="app-layout">
+            <!-- BEGIN Site Header -->
+            <div class="app-header">
+                <!-- BEGIN Header Start -->
+                <div class="header-start">
+                    <!-- BEGIN Widget -->
+                    <div class="brand-name">
+                        LOGO
+                    </div><!-- END Widget -->
+                </div><!-- BEGIN Header Start -->
+                <!-- BEGIN Header Center -->
+                <div class="header-center component-container" data-name="header_center">
+                    <div class="label">Header trên trái</div>
+                    <!-- Component Placeholder 1 -->
+                </div><!-- END Header Center -->
+                <!-- BEGIN Header End -->
+                <div class="header-end component-container" data-name="header_end">
+                    <div class="label">Header trên phải</div>
+                    <!-- Component Placeholder 2,3 -->
+                </div><!-- END Header End -->
+            </div><!-- END Site Header -->
+            <!-- BEGIN app Main -->
+            <div class="app-main">
+                <div class="main-content">
+                    <!-- BEGIN Main Map -->
+                    <div class="content-map">
+                        <div class="map-top-left">
+                            <div class="component-container" data-name="map_top_left">
+                                <div class="label">Map Top Left</div>
+                                <!-- Component Placeholder 6 -->
+                            </div>
+                        </div>
+                        <div class="map-top-right">
+                            <div class="component-container" data-name="map_top_right">
+                                <div class="label">Map Top Right</div>
+                                <!-- Component Placeholder 7 -->
+                            </div>
+                        </div>
+                        <div class="map-center">
+                            <div class="d-flex align-items-center justify-content-center text-uppercase text-secondary">
+                                <span class="fs-6 me-1">Bản đồ</span> <button
+                                    class="btn btn-sm btn-24 rounded-circle"><i class="fa-solid fa-gear"></i></button>
+                            </div>
+                        </div>
+                        <div class="map-bottom-left ">
+                            <div class="component-container" data-name="map_bottom_left">
+                                <div class="label">Map Bottom left</div>
+                                <!-- Component Placeholder 8 -->
+                            </div>
+                        </div>
+                        <div class="map-bottom-right">
+                            <div class="component-container" data-name="map_bottom_right">
+                                <div class="label">Map Bottom Right</div>
+                                <!-- Component Placeholder 9 -->
+                            </div>
+                        </div>
+                    </div><!-- END Main Map -->
+                    <!-- BEGIN content Footer -->
+                    <div class="content-footer component-container" data-name="content_footer">
+                        <div class="label">Content Footer</div>
+                    </div><!-- END content Footer -->
+                </div>
+                <!-- BEGIN Main Sidebar -->
+                <div class="main-sidebar component-container" data-name="main_sidebar">
+                    <div class="label">Main Sidebar</div>
+                    <!-- Component Placeholder 4,5 -->
+                </div><!-- END Main Sidebar -->
+            </div><!-- END Site Main-->
+            <!-- BEGIN App Footer -->
+            <div class="app-footer component-container" data-name="app_footer">
+                <div class="label">App Footer</div>
+                <!-- Component Placeholder 10,11,12,13 -->
+            </div>
+            <!-- BEGIN App Footer -->
+        </div><!-- END App Layout -->
+        <!-- BEGIN App Components -->
+        <div class="app-components">
+            <div class="small text-uppercase mb-1">Không hoạt động</div>
+            <div class="component-container" data-name="inactive_components">
+                <!-- Component Placeholder 15 -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal Component Config -->
+    <div class="modal fade" id="componentConfigModal" tabindex="-1" aria-labelledby="componentConfigLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0 p-3">
+                    <h6 class="modal-title mb-0" id="componentConfigLabel">Cấu hình "Thống kê"</h6>
+                    <button type="button" class="btn-close btn-sm btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-3 py-0">
+                    <div class="border p-2 mb-3">
+                        <div class="opacity-50 text-uppercase small">Xem trước</div>
+                        <p>Component View</p>
+                    </div>
+                    <!-- BEGIN -->
+                    <h6 class="text-primary mb-2"><strong>Cấu hình</strong></h6>
+                    <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-2">
+                        <div class="small">Option 1</div>
+                        <div>
+                            <div class="form-check form-switch me-0 pe-0">
+                                <input class="form-check-input" type="checkbox" role="switch" id="option-1" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-2">
+                        <div class="small">Option 2</div>
+                        <div>
+                            <div class="form-check form-switch me-0 pe-0">
+                                <input class="form-check-input" type="checkbox" role="switch" id="option-2" checked>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-2">
+                        <div class="small">Option 3</div>
+                        <div>
+                            <input type="text" class="form-control form-control-sm" value="">
+                        </div>
+                    </div>
+                    <!-- END -->
+                </div>
+                <div class="modal-footer border-top-0 p-3 pt-2">
+                    <button type="button" class="btn btn-primary btn-sm">Lưu cấu hình</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN Inlucde JS -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/overlayscrollbars/browser/overlayscrollbars.browser.es6.js"></script>
+    <!-- END Inlucde JS -->
+    <!-- BEGIN ONLY for this page -->
+    <script src="node_modules/sortablejs/Sortable.min.js"></script>
+    <!-- END ONLY for this page -->
+    <script src="js/setting-layout.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>

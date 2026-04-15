@@ -1,0 +1,1761 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>parking-security-dashboard</title>
+    <!-- BEGIN Includes Styles  -->
+    <link rel="stylesheet" href="css/fa.min.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+    <link rel="stylesheet" href="node_modules/overlayscrollbars/styles/overlayscrollbars.min.css">
+    <link rel="stylesheet" href="node_modules/flickity/dist/flickity.min.css">
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/safety_dashboard.css">
+    <link rel="stylesheet" href="css/parking_security_dashboard.css">
+    <!-- END Includes Styles  -->
+
+</head>
+
+<body class="overflow-hidden">
+    <!-- BEGIN Components Preload -->
+    <div class="d-none">
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="1" data-name="Thông tin giao thông">
+            <ul class="nav stats-nav">
+                <li class="">
+                    <div class="parallelogram-slanted"></div>
+                </li>
+                <li class="nav-item item-traffic-flow">
+                    <div class="icon text-primary me-2">
+                        <svg width="28" height="28" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.125 23.7188C15.125 24.8745 14.7823 26.0044 14.1402 26.9654C13.498 27.9264 12.5854 28.6754 11.5176 29.1177C10.4498 29.56 9.27477 29.6757 8.14119 29.4502C7.00762 29.2247 5.96636 28.6682 5.1491 27.8509C4.33183 27.0336 3.77527 25.9924 3.54979 24.8588C3.32431 23.7252 3.44003 22.5503 3.88233 21.4824C4.32463 20.4146 5.07364 19.502 6.03464 18.8599C6.99564 18.2177 8.12547 17.875 9.28125 17.875H15.125V23.7188ZM23.7188 17.875C24.8745 17.875 26.0044 18.2177 26.9654 18.8599C27.9264 19.502 28.6754 20.4146 29.1177 21.4824C29.56 22.5503 29.6757 23.7252 29.4502 24.8588C29.2247 25.9924 28.6682 27.0336 27.8509 27.8509C27.0336 28.6682 25.9924 29.2247 24.8588 29.4502C23.7252 29.6757 22.5503 29.56 21.4824 29.1177C20.4146 28.6754 19.502 27.9264 18.8599 26.9654C18.2177 26.0044 17.875 24.8745 17.875 23.7188V17.875H23.7188ZM9.28125 20.625C8.66937 20.625 8.07122 20.8064 7.56246 21.1464C7.05369 21.4863 6.65716 21.9695 6.423 22.5348C6.18884 23.1001 6.12757 23.7222 6.24695 24.3223C6.36632 24.9224 6.66097 25.4737 7.09364 25.9064C7.52631 26.339 8.07756 26.6337 8.67769 26.7531C9.27782 26.8724 9.89987 26.8112 10.4652 26.577C11.0305 26.3428 11.5137 25.9463 11.8536 25.4375C12.1936 24.9288 12.375 24.3306 12.375 23.7188V20.625H9.28125ZM20.625 23.7188C20.625 24.3306 20.8064 24.9288 21.1464 25.4375C21.4863 25.9463 21.9695 26.3428 22.5348 26.577C23.1001 26.8112 23.7222 26.8724 24.3223 26.7531C24.9224 26.6337 25.4737 26.339 25.9064 25.9064C26.339 25.4737 26.6337 24.9224 26.7531 24.3223C26.8724 23.7222 26.8112 23.1001 26.577 22.5348C26.3428 21.9695 25.9463 21.4863 25.4375 21.1464C24.9288 20.8064 24.3306 20.625 23.7188 20.625H20.625V23.7188ZM9.28125 3.4375C10.0487 3.4375 10.8086 3.58865 11.5176 3.88233C12.2266 4.17601 12.8708 4.60645 13.4134 5.1491C13.9561 5.69174 14.3865 6.33595 14.6802 7.04494C14.9738 7.75394 15.125 8.51384 15.125 9.28125V15.125H9.28125C7.73139 15.125 6.24501 14.5093 5.1491 13.4134C4.05318 12.3175 3.4375 10.8311 3.4375 9.28125C3.4375 7.73139 4.05318 6.24501 5.1491 5.1491C6.24501 4.05318 7.73139 3.4375 9.28125 3.4375ZM23.0313 3.905C23.0859 3.76732 23.1807 3.64922 23.3033 3.56602C23.4259 3.48281 23.5706 3.43833 23.7188 3.43833C23.8669 3.43833 24.0116 3.48281 24.1342 3.56602C24.2568 3.64922 24.3516 3.76732 24.4063 3.905L24.7775 4.796C25.3981 6.30726 26.5748 7.52285 28.0651 8.19225L29.1129 8.65975C29.247 8.72178 29.3606 8.8209 29.4402 8.94541C29.5198 9.06991 29.5621 9.2146 29.5621 9.36238C29.5621 9.51015 29.5198 9.65484 29.4402 9.77934C29.3606 9.90385 29.247 10.003 29.1129 10.065L28.0019 10.5586C26.5493 11.2112 25.3933 12.3834 24.761 13.8449L24.4008 14.6699C24.1368 15.2749 23.3008 15.2749 23.0368 14.6699L22.6765 13.8449C22.0442 12.3834 20.8882 11.2112 19.4356 10.5586L18.3246 10.065C18.1905 10.003 18.0769 9.90385 17.9973 9.77934C17.9177 9.65484 17.8754 9.51015 17.8754 9.36238C17.8754 9.2146 17.9177 9.06991 17.9973 8.94541C18.0769 8.8209 18.1905 8.72178 18.3246 8.65975L19.3724 8.19225C20.8627 7.52285 22.0394 6.30726 22.66 4.796L23.0313 3.905ZM9.28125 6.1875C8.46074 6.1875 7.67383 6.51345 7.09364 7.09364C6.51345 7.67383 6.1875 8.46074 6.1875 9.28125C6.1875 10.1018 6.51345 10.8887 7.09364 11.4689C7.67383 12.0491 8.46074 12.375 9.28125 12.375H12.375V9.28125C12.375 8.46074 12.0491 7.67383 11.4689 7.09364C10.8887 6.51345 10.1018 6.1875 9.28125 6.1875Z"
+                                fill="#00EAFF" />
+                        </svg>
+
+                    </div>
+                    <div class="me-2">
+                        <div class="lh-sm small text-white opacity-50">Xử lý trung tâm</div>
+                        <div class="lh-sm text-shamrock-green">Đang hoạt động</div>
+                    </div>
+
+                </li>
+
+            </ul>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="2" data-name="Thông tin thời tiết">
+            <ul class="nav weather-nav">
+                <li class="nav-item item-weather has-icon">
+                    <img src="img/03n.png" class="icon" id="weather_image" alt="">
+                    <div>
+                        <div class="lh-sm text-primary text-capitalize mb-0"><span id="weather_description">Nắng</span>
+                        </div>
+                        <div class="lh-sm small opacity-75">Thời tiết</div>
+                    </div>
+                </li>
+                <li class="nav-item item-temperature has-icon">
+                    <i class="icon fa-regular fa-temperature-three-quarters text-primary"></i>
+                    <div>
+                        <div class="lh-sm text-primary mb-0"><span class="cc" id="weather_temp">31</span><sup>o</sup>C
+                        </div>
+                        <div class="lh-sm small opacity-75">Nhiệt độ</div>
+                    </div>
+                </li>
+                <li class="nav-item item-humidity has-icon">
+                    <i class="icon fa-regular fa-droplet text-primary"></i>
+                    <div>
+                        <div class="lh-sm text-primary mb-0"><span class="cc" id="weather_humidity">70</span>%</div>
+                        <div class="lh-sm small opacity-75">Độ ẩm</div>
+                    </div>
+                </li>
+            </ul>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="3" data-name="Đồng hồ">
+            <div class="clock">
+                <div class="text-end lh-sm text-primary mb-0 clock-time"><span id="time">16:04:05</span></div>
+                <div class="text-end lh-sm small opacity-50 clock-date"><span class="display-day text-capitalize"
+                        id="day">Thứ 6</span>,
+                    <span class="display-date" id="date">17 - 2 - 2021</span>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="4" data-name="Thông tin cảnh báo">
+            <div class="card card-events-monitoring mb-0">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title text-uppercase fw-bold text-golden-orange mb-0">
+                        <i class="me-2 fa-regular fa-triangle-exclamation"></i>
+                        Cảnh báo
+                    </h5>
+                    <div class="small opacity-50"></i> Xem tất cả <i class="ms-2 fa-light fa-chevron-right"></i></div>
+                </div>
+                <div class="card-body py-0 ">
+                    <div class="d-flex flex-column">
+                        <div class="custom-scroll-light" data-overlayscrollbars-initialize
+                            style="height: calc(100vh - 110px - 280px - 190px);">
+                            <div id="skeleton-alert-list">
+                                <!-- item 1 -->
+                                <div class="d-flex mb-3 skeleton-box">
+                                    <div class="size-96 rounded-3 flex-shrink-0 skeleton-bg d-flex align-items-center justify-content-center"
+                                        style="border: 1px solid rgba(255,255,255,0.05);">
+                                        <i class="fa-regular fa-magnifying-glass fs-3 text-white opacity-25"
+                                            style="transform: scaleX(-1);"></i>
+                                    </div>
+                                    <div class="ms-3 flex-grow-1">
+                                        <div class="skeleton-bar w-25 mb-2 mt-1" style="height: 14px;"></div>
+                                        <div class="d-flex mb-2">
+                                            <div
+                                                class="size-24 rounded-circle skeleton-bg me-2 flex-shrink-0 border border-secondary border-opacity-25 mt-1">
+                                            </div>
+                                            <div class="skeleton-bar w-75 mt-2 mb-0" style="height: 16px;"></div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="size-24 rounded-circle skeleton-bg me-2 flex-shrink-0 border border-secondary border-opacity-25">
+                                            </div>
+                                            <div class="skeleton-bar w-25 mb-0" style="height: 12px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="real-alert-list" style="display: none;">
+                                <div class="d-flex mb-3">
+                                    <img src="img/scene-photo-1.jpg" alt=""
+                                        class="size-96 object-fit-cover rounded-3 flex-shrink-0">
+                                    <div class="ms-3">
+                                        <p class="mb-1 fs-14px lh-base fw-normal text-amber-orange">08:43</p>
+                                        <h5 class="d-flex fs-16px lh-sm fw-normal text-white">
+                                            <span
+                                                class="mt-1 flex-shrink-0 size-24 d-flex align-items-center justify-content-center bg-safety-orange rounded-circle me-2"><i
+                                                    class="fs-10px text-white fa-solid fa-fire"></i></span>
+                                            Xâm nhập vùng nguy hiểm
+                                        </h5>
+                                        <div class="d-flex align-items-center">
+                                            <span
+                                                class="flex-shrink-0 size-24 d-flex align-items-center justify-content-center rounded-circle me-2 border">
+                                                <i class="fs-10px text-white opacity-25 fa-regular fa-camera-cctv"></i>
+                                            </span>
+                                            <p class="small lh-1 fw-normal text-white opacity-50 mb-0">Cam-01</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <img src="img/scene-photo-2.png" alt=""
+                                        class="size-96 object-fit-cover rounded-3 flex-shrink-0">
+                                    <div class="ms-3">
+                                        <p class="mb-1 fs-14px lh-base fw-normal text-amber-orange">08:43</p>
+                                        <h5 class="d-flex fs-16px lh-sm fw-normal text-white">
+                                            Không đúng quần áo bảo hộ
+                                        </h5>
+                                        <div class="d-flex align-items-center">
+                                            <span
+                                                class="flex-shrink-0 size-24 d-flex align-items-center justify-content-center rounded-circle me-2 border">
+                                                <i class="fs-10px text-white opacity-25 fa-regular fa-camera-cctv"></i>
+                                            </span>
+                                            <p class="small lh-1 fw-normal text-white opacity-50 mb-0">Cam-01</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <img src="img/scene-photo-1.jpg" alt=""
+                                        class="size-96 object-fit-cover rounded-3 flex-shrink-0">
+                                    <div class="ms-3">
+                                        <p class="mb-1 fs-14px lh-base fw-normal text-amber-orange">08:43</p>
+                                        <h5 class="d-flex fs-16px lh-sm fw-normal text-white">
+                                            Xâm nhập vùng nguy hiểm
+                                        </h5>
+                                        <div class="d-flex align-items-center">
+                                            <span
+                                                class="flex-shrink-0 size-24 d-flex align-items-center justify-content-center rounded-circle me-2 border">
+                                                <i class="fs-10px text-white opacity-25 fa-regular fa-camera-cctv"></i>
+                                            </span>
+                                            <p class="small lh-1 fw-normal text-white opacity-50 mb-0">Cam-01</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <img src="img/scene-photo-1.jpg" alt=""
+                                        class="size-96 object-fit-cover rounded-3 flex-shrink-0">
+                                    <div class="ms-3">
+                                        <p class="mb-1 fs-14px lh-base fw-normal text-amber-orange">08:43</p>
+                                        <h5 class="d-flex fs-16px lh-sm fw-normal text-white">
+                                            Xâm nhập vùng nguy hiểm
+                                        </h5>
+                                        <div class="d-flex align-items-center">
+                                            <span
+                                                class="flex-shrink-0 size-24 d-flex align-items-center justify-content-center rounded-circle me-2 border">
+                                                <i class="fs-10px text-white opacity-25 fa-regular fa-camera-cctv"></i>
+                                            </span>
+                                            <p class="small lh-1 fw-normal text-white opacity-50 mb-0">Cam-01</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <img src="img/scene-photo-1.jpg" alt=""
+                                        class="size-96 object-fit-cover rounded-3 flex-shrink-0">
+                                    <div class="ms-3">
+                                        <p class="mb-1 fs-14px lh-base fw-normal text-amber-orange">08:43</p>
+                                        <h5 class="d-flex fs-16px lh-sm fw-normal text-white">
+                                            Xâm nhập vùng nguy hiểm
+                                        </h5>
+                                        <div class="d-flex align-items-center">
+                                            <span
+                                                class="flex-shrink-0 size-24 d-flex align-items-center justify-content-center rounded-circle me-2 border">
+                                                <i class="fs-10px text-white opacity-25 fa-regular fa-camera-cctv"></i>
+                                            </span>
+                                            <p class="small lh-1 fw-normal text-white opacity-50 mb-0">Cam-01</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item mt-auto border-top min-h-202px pt-2" data-id="5" data-name="Tổng số cảnh báo">
+            <div class="card mb-0">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title fs-14px fw-bold text-dusty-blue mb-0">
+                        Tổng số cảnh báo
+                    </h5>
+                    <p class="mb-0 fs-20px lh-sm fw-normal text-white">200</p>
+                </div>
+                <div class="card-body py-0">
+                    <div class="mb-1">
+                        <div class="bubble-chart flex-shrink-0">
+                            <canvas id="warningBubbleChart"></canvas>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <span class="d-inline-block size-13 me-2 bg-azure-blue"></span>
+                                <p class="mb-0 fs-12px lh-sm fw-normal">Quần áo bảo hộ</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="d-inline-block size-13 me-2 bg-safety-orange"></span>
+                                <p class="mb-0 fs-12px lh-sm fw-normal">Xâm nhập vùng cấm</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="d-inline-block size-13 me-2 bg-warning-yellow"></span>
+                                <p class="mb-0 fs-12px lh-sm fw-normal">Mũ bảo hộ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="6" data-name="Bản đồ - Thống kê bản đồ">
+            <select class="form-select custom-select w-auto my-3 border custom-border"
+                aria-label="Default select example">
+                <option selected>Mặt bằng bãi xe</option>
+                <option value="1">Mặt bằng 01</option>
+                <option value="2">Mặt bằng 02</option>
+            </select>
+            <div class="maker-stats-block">
+                <div class="mb-1 text-uppercase small lh-1 text-white opacity-50">Thống kê bản đồ</div>
+                <div class="item d-flex align-items-center justify-content-between mb-1 custom-border bg-dark-navy">
+                    <div>
+                        <div class="small opacity-50">Cụm Camera</div>
+                        <div class="text-primary lh-1"><span id="groupcamera_in_view">-</span>/ 44
+                        </div>
+                    </div>
+                    <svg width="28" height="20" viewBox="0 0 36 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17.7312 6.31517L5.5455 0.0526342C5.30554 -0.0705515 5.01409 0.0298341 4.89443 0.277129L2.29473 5.64985C2.23727 5.76861 2.22795 5.90601 2.2688 6.03183C2.30964 6.15769 2.39728 6.26163 2.51255 6.32084L6.15088 8.1906L5.82808 8.85776C5.70846 9.10505 5.80596 9.40542 6.04591 9.52875L6.1606 9.58773L5.53372 10.7383H1.83735C1.49359 10.0531 0.800153 9.58436 0 9.58436V13.8462C0.781658 13.8462 1.46184 13.399 1.8133 12.7395H6.10207C6.45309 12.7395 6.77674 12.5443 6.94862 12.2289L7.9005 10.4819L8.06598 10.5669C8.30588 10.6902 8.59743 10.5897 8.71709 10.3425L9.03989 9.67533L11.7583 11.0725C11.9151 11.1531 12.1018 11.1404 12.2469 11.0391L12.9972 10.5161L14.3367 11.2045C14.4047 11.2395 14.4789 11.2571 14.5534 11.2571C14.6053 11.2571 14.6573 11.2485 14.7074 11.2312C14.8295 11.1892 14.9304 11.0988 14.9878 10.9801L16.3593 8.1456L17.7815 7.18084C17.9265 7.08244 18.0095 6.91166 17.9991 6.73305C17.9887 6.55434 17.8865 6.39506 17.7312 6.31517Z"
+                            fill="white" />
+                        <path
+                            d="M14.859 14.817L29.3881 6.98887C29.6742 6.83489 30.0217 6.96037 30.1643 7.26949L33.264 13.9854C33.3325 14.1338 33.3436 14.3056 33.2949 14.4629C33.2462 14.6202 33.1417 14.7501 33.0043 14.8241L28.6663 17.1613L29.0511 17.9953C29.1938 18.3044 29.0775 18.6799 28.7914 18.834L28.6547 18.9077L29.4021 20.346H33.8093C34.2192 19.4895 35.046 18.9035 36 18.9035V24.2308C35.068 24.2308 34.257 23.6718 33.838 22.8474H28.7245C28.3059 22.8474 27.92 22.6034 27.7151 22.2092L26.5802 20.0255L26.3829 20.1318C26.0968 20.2859 25.7492 20.1602 25.6065 19.8512L25.2217 19.0172L21.9805 20.7637C21.7936 20.8644 21.5709 20.8485 21.3979 20.722L20.5034 20.0682L18.9062 20.9287C18.8251 20.9725 18.7367 20.9945 18.6479 20.9945C18.586 20.9945 18.524 20.9836 18.4643 20.9621C18.3187 20.9096 18.1984 20.7966 18.1299 20.6482L16.4947 17.1051L14.799 15.8991C14.6261 15.7761 14.5271 15.5627 14.5395 15.3394C14.5519 15.116 14.6737 14.9169 14.859 14.817Z"
+                            fill="white" />
+                        <path
+                            d="M10.9115 19.7122L3.41261 15.9547C3.26495 15.8807 3.08559 15.941 3.01196 16.0894L1.41214 19.313C1.37678 19.3842 1.37105 19.4667 1.39618 19.5422C1.42132 19.6177 1.47525 19.6801 1.54619 19.7156L3.78516 20.8374L3.58651 21.2377C3.5129 21.3861 3.5729 21.5663 3.72056 21.6403L3.79114 21.6757L3.40537 22.3661H1.13068C0.91913 21.9549 0.492402 21.6737 0 21.6737V24.2308C0.48102 24.2308 0.899591 23.9625 1.11588 23.5668H3.75512C3.97113 23.5668 4.1703 23.4496 4.27607 23.2604L4.86185 22.2122L4.96368 22.2632C5.11131 22.3372 5.29072 22.2769 5.36436 22.1286L5.56301 21.7283L7.23586 22.5666C7.33235 22.6149 7.44727 22.6073 7.53656 22.5465L7.99826 22.2327L8.82261 22.6458C8.86445 22.6668 8.91009 22.6774 8.95592 22.6774C8.98786 22.6774 9.01986 22.6722 9.05069 22.6618C9.12585 22.6366 9.18791 22.5823 9.22327 22.5111L10.0672 20.8104L10.9424 20.2316C11.0317 20.1725 11.0828 20.0701 11.0764 19.9629C11.07 19.8557 11.0071 19.7601 10.9115 19.7122Z"
+                            fill="white" />
+                    </svg>
+
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-1 custom-border bg-dark-navy">
+                    <div>
+                        <div class="small opacity-50">Bốt bảo vệ</div>
+                        <div class="text-primary lh-1"><span id="police_in_view">-</span>/ 12</div>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 26 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M25.2449 9.23563C25.6252 8.82108 25.5622 8.22619 25.0944 7.91351L13.6051 0.23446C13.1372 -0.0780168 12.3739 -0.0782215 11.906 0.234255L0.413734 7.90758C-0.0541112 8.22006 -0.142484 8.81494 0.237602 9.2297L2.59862 11.8245V15.2177C2.18948 15.3034 1.78035 15.7223 1.78035 16.2236V17.5532C1.78035 18.1158 2.23817 18.644 2.7947 18.7269L11.7354 20.0616C12.2918 20.1448 13.2033 20.1448 13.7598 20.0616L22.6852 18.7269C23.2416 18.644 23.6692 18.1158 23.6692 17.5532V16.2236C23.6692 15.7224 23.3623 15.3034 22.8509 15.2177V11.8268L25.2449 9.23563ZM4.23516 15.1761V13.5395H21.112V15.1761H4.23516ZM9.34934 5.89402C9.34934 5.89402 9.9029 5.88707 10.0391 5.88707C11.228 5.88707 12.648 4.33307 12.7503 4.16901C12.8526 4.33307 14.2513 5.88707 15.4401 5.88707C15.5764 5.88707 16.1001 5.89402 16.1001 5.89402V8.48988C16.1001 8.70345 16.0463 8.91282 15.9676 9.11616C15.8615 9.39069 15.6881 9.65397 15.4825 9.9017C15.231 10.2048 14.9155 10.4791 14.6025 10.7323C13.884 11.3139 12.7566 11.8254 12.7566 11.8254C12.7566 11.8254 11.6283 11.3139 10.9098 10.7323C10.5968 10.479 10.2755 10.2048 10.0241 9.9017C9.81842 9.65397 9.6207 9.39069 9.51463 9.11616C9.43587 8.91282 9.34934 8.70345 9.34934 8.48988V5.89402Z"
+                            fill="white" />
+                    </svg>
+
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-1 custom-border bg-dark-navy">
+                    <div>
+                        <div class="small opacity-50">Cảm biến nhiệt</div>
+                        <div class="text-primary lh-1"><span id="broadcast_in_view">-</span>/ 12
+                        </div>
+                    </div>
+                    <svg class="" width="20" height="20" viewBox="0 0 26 26" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10.6032 10.054C12.0177 9.89587 13.4823 9.89587 14.8968 10.054C15.1793 10.0855 15.4002 10.3097 15.4314 10.5768C15.6002 12.0208 15.6002 13.4797 15.4314 14.9236C15.4002 15.1908 15.1793 15.4149 14.8968 15.4466C13.4823 15.6045 12.0177 15.6045 10.6032 15.4466C10.3207 15.4149 10.0998 15.1908 10.0686 14.9236C9.89967 13.4797 9.89967 12.0208 10.0686 10.5768C10.0998 10.3097 10.3207 10.0855 10.6032 10.054Z"
+                            fill="white" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M16.6731 0C17.2147 0 17.6538 0.43911 17.6538 0.980769V4.80773C19.1752 5.1094 20.3863 6.31126 20.6721 7.84615H24.5192C25.0609 7.84615 25.5 8.28526 25.5 8.82692C25.5 9.36858 25.0609 9.80769 24.5192 9.80769H20.8733C20.9214 10.4609 20.9535 11.1149 20.9695 11.7692H23.2115C23.7532 11.7692 24.1923 12.2084 24.1923 12.75C24.1923 13.2916 23.7532 13.7308 23.2115 13.7308H20.9695C20.9535 14.3851 20.9214 15.0391 20.8733 15.6923H24.5192C25.0609 15.6923 25.5 16.1314 25.5 16.6731C25.5 17.2147 25.0609 17.6538 24.5192 17.6538H20.6721C20.3863 19.1887 19.1752 20.3906 17.6538 20.6923V24.5192C17.6538 25.0609 17.2147 25.5 16.6731 25.5C16.1314 25.5 15.6923 25.0609 15.6923 24.5192V20.8914C15.0408 20.9375 14.3863 20.9682 13.7308 20.9836V23.2115C13.7308 23.7532 13.2916 24.1923 12.75 24.1923C12.2084 24.1923 11.7692 23.7532 11.7692 23.2115V20.9836C11.1137 20.9682 10.4592 20.9375 9.80769 20.8914V24.5192C9.80769 25.0609 9.36858 25.5 8.82692 25.5C8.28526 25.5 7.84615 25.0609 7.84615 24.5192V20.6923C6.32482 20.3906 5.11378 19.1887 4.82782 17.6538H0.980769C0.43911 17.6538 0 17.2147 0 16.6731C0 16.1314 0.43911 15.6923 0.980769 15.6923H4.62671C4.57857 15.0391 4.54649 14.3851 4.53045 13.7308H2.28846C1.7468 13.7308 1.30769 13.2916 1.30769 12.75C1.30769 12.2084 1.7468 11.7692 2.28846 11.7692H4.53045C4.54649 11.1149 4.57857 10.4609 4.62671 9.80769H0.980769C0.43911 9.80769 0 9.36858 0 8.82692C0 8.28526 0.43911 7.84615 0.980769 7.84615H4.82782C5.11378 6.31126 6.32482 5.1094 7.84615 4.80774V0.980769C7.84615 0.43911 8.28526 0 8.82692 0C9.36858 0 9.80769 0.43911 9.80769 0.980769V4.60862C10.4592 4.5625 11.1137 4.53177 11.7692 4.51642V2.28846C11.7692 1.7468 12.2084 1.30769 12.75 1.30769C13.2916 1.30769 13.7308 1.7468 13.7308 2.28846V4.51642C14.3863 4.53177 15.0408 4.5625 15.6923 4.60862V0.980769C15.6923 0.43911 16.1314 0 16.6731 0ZM15.1147 8.10457C13.5553 7.93029 11.9446 7.93029 10.3853 8.10457C9.21103 8.23582 8.25939 9.1601 8.12034 10.3489C7.93374 11.9444 7.93374 13.5562 8.12034 15.1516C8.25939 16.3404 9.21103 17.2647 10.3853 17.3959C11.9446 17.5701 13.5553 17.5701 15.1147 17.3959C16.289 17.2647 17.2406 16.3404 17.3797 15.1516C17.5663 13.5562 17.5663 11.9444 17.3797 10.3489C17.2406 9.1601 16.289 8.23582 15.1147 8.10457Z"
+                            fill="white" />
+                    </svg>
+
+                </div>
+
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="7" data-name="Bản đồ - Sự cố sự kiện">
+            <div class="d-flex">
+                <div class="map-hot-events mb-2 text-center me-2 d-none" style="min-width: 10rem;">
+                    <div class="text-uppercase lh-1">Sự kiến nóng</div>
+                    <div class="small opacity-50"><i class="fa-solid fa-angle-down"></i></div>
+                    <div class="event-popup popup-security mb-2">
+                        <div class="popup-inner">
+                            <div class="popup-header">
+                                <span class="small count-down">Đóng sau <span class="number"
+                                        data-time="60">60</span>s</span>
+                            </div>
+                            <div class="popup-body">
+                                <div class="media-placeholder ratio-16-9">
+                                    <div class="bg" style="background-color: #323E50;"></div>
+                                    <div class="media-inner d-flex justify-content-center align-items-center">
+                                        <a href="#"><i class="bi bi-play fs-5"></i></a>
+                                    </div>
+                                </div>
+                                <div class="event-info">
+                                    <div class="lh-sm">Phát hiện đánh nhau</div>
+                                    <div class="small opacity-50">Ngã tư...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event-popup popup-traffic">
+                        <div class="popup-inner">
+                            <div class="popup-header">
+                                <span class="small count-down">Đóng sau <span class="number"
+                                        data-time="60">60</span>s</span>
+                            </div>
+                            <div class="popup-body">
+                                <div class="media-placeholder ratio-16-9">
+                                    <div class="bg" style="background-color: #323E50;"></div>
+                                    <div class="media-inner d-flex justify-content-center align-items-center">
+                                        <a href="#"><i class="bi bi-play fs-5"></i></a>
+                                    </div>
+                                </div>
+                                <div class="event-info">
+                                    <div class="lh-sm">Phát hiện tai nạn giao thông</div>
+                                    <div class="small opacity-50">Ngã tư...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2 text-center">
+                    <div class="small text-uppercase lh-1.5 text-white opacity-50">Cảnh báo <br> cần xử lý</div>
+                    <div class="small opacity-50 mb-2"><i class="icon-stretch fa-solid fa-angle-down"></i></div>
+
+                    <div class="media-placeholder mb-2">
+                        <div class="mkCharts" data-color="#EB5757" data-percent="80" data-size="4.5rem" data-stroke="1">
+                            &nbsp;</div>
+                        <div class="media-inner d-flex justify-content-center align-items-center">
+                            <div>
+                                <div class="fs-4 lh-1 text-danger">01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="8" data-name="Bản đồ - Mini Map">
+
+            <div class="mini-map-block d-flex align-items-end">
+                <div class="mini-map border custom-border" style="background: rgba(0,0,0,0.5);">
+                    <div class="mini-map-top">&nbsp;</div>
+                    <div class="media-placeholder" style="height: 6.25rem; width: 100%;">
+                        <div class="bg"
+                            style="background-image: url('img/parking-dashboard-dark.png'); background-size: contain; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group-vertical ms-2" role="group">
+                    <button id="back_to_center" type="button"
+                        class="btn btn-sm btn-outline-secondary border custom-border">
+                        <i class="fa-solid fa-location-arrow"></i>
+                    </button>
+                    <button id="zoom_in" type="button" class="btn btn-sm btn-outline-secondary border custom-border">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button id="zoom_out" type="button" class="btn btn-sm btn-outline-secondary border custom-border">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="9" data-name="Bản đồ - Rada">
+            <div class=" d-flex flex-column align-items-end mb-2">
+                <div class="flex-shrink-0 me-2">
+                    <div class="radar mt-2">
+                        <div class="media-placeholder">
+                            <div class="dot warning animate__animated animate__flash animate__slow animate__infinite"
+                                style="left: 20%;top: 25%;"></div>
+                            <div class="dot danger animate__animated animate__flash animate__fast animate__infinite"
+                                style="left: 80%;top: 50%;"></div>
+                            <div class="dot warning animate__animated animate__flash animate__slow animate__infinite"
+                                style="left: 24%;top: 84%;"></div>
+                            <div class="dot success animate__animated animate__flash animate__slower animate__infinite"
+                                style="left: 60%;top: 73%;"></div>
+                            <div class="bg"></div>
+                            <div class="inner">
+                                <div class="inner">
+                                    <div class="inner"></div>
+                                </div>
+                                <div class="beam"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item width2x width-safety border-divider pe-2" data-id="10"
+            data-name="Thống kê - Trạng thái bãi đỗ">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0 me-3">Trạng thái bãi
+                        đỗ
+                    </h5>
+                </div>
+                <div class="card-body py-0">
+                    <div class="d-flex flex-column">
+                        <div class="pw">
+
+                            <div class="dot-grid" id="grid"></div>
+
+                            <hr class="divider">
+                            <div class="status-row">
+                                <span class="status-label fs-14px lh-1 fw-normal text-white opacity-50">Trạng
+                                    thái</span>
+                                <span class="status-val fs-16px lh-1 fw-normal" id="s-status">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item width2x width-safety border-divider px-2" data-id="11" data-name="Thống kê - Đỗ xe">
+            <div class="card stats-traffic-violation">
+                <div class="card-header d-flex align-items-center mb-3">
+                    <svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M27.1648 22.9629V21.6693H27.1643L27.1648 21.6643C27.1634 21.4851 27.0915 21.3137 26.9647 21.1871C26.8379 21.0604 26.6664 20.9888 26.4872 20.9875V20.9867H24.3839L15.1335 4.96507L15.1299 4.96731C14.9249 4.54647 14.4971 4.25415 13.9976 4.25415C13.7542 4.2542 13.5162 4.32469 13.312 4.4571C13.1079 4.58952 12.9465 4.7782 12.8473 5.00035L3.61767 20.9864H1.50815C1.32705 20.9864 1.15336 21.0583 1.02525 21.1863C0.897145 21.3143 0.8251 21.4879 0.824951 21.669V23.0307H0.828311C0.827751 23.0416 0.824951 23.0517 0.824951 23.0626C0.825025 23.2437 0.897038 23.4174 1.02515 23.5455C1.15327 23.6736 1.327 23.7455 1.50815 23.7455H26.487V23.7444C26.4906 23.7444 26.4937 23.7455 26.4973 23.7452C26.6784 23.7437 26.8515 23.6704 26.9786 23.5414C27.1056 23.4123 27.1763 23.2381 27.1749 23.057C27.1749 23.0251 27.1693 22.9943 27.1648 22.9629ZM13.3037 7.04463H14.6973L16.3067 9.83259H11.6943L13.3037 7.04463ZM10.0848 12.6203H17.9167L19.5262 15.4082H8.47511L10.0848 12.6203ZM5.25455 20.9864L6.86399 18.1984H21.1373L22.7467 20.9864H5.25455Z"
+                            fill="#00EAFF" />
+                    </svg>
+                    <h5 class="card-title text-uppercase fw-bold text-primary mb-0 ms-2">Đỗ xe</h5>
+                </div>
+                <div class="card-body py-0">
+                    <div class="d-flex align-items-center flex-grow-1">
+                        <div class="w-100">
+                            <div class="row">
+                                <div class="col-6 border-end custom-divider pe-3">
+                                    <p class="fs-14px lh-base fw-normal text-white opacity-50 mb-2">Lưu bãi quá hạn</p>
+                                    <div class="d-flex justify-content-between align-items-end">
+                                        <p class="fs-40px lh-1 fw-normal text-dusty-blue mb-0">
+                                            <span class="position-relative d-inline-block">
+                                                32
+                                                <i
+                                                    class="fa-solid fa-circle-exclamation text-bright-red fs-16px warning-icon"></i>
+                                            </span>
+                                        </p>
+                                        <span><i class="fs-16px fa-light fa-arrow-up-right"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-6 ps-3">
+                                    <p class="fs-14px lh-base fw-normal text-white opacity-50 mb-2">Sai vị trí</p>
+                                    <div class="d-flex justify-content-between align-items-end">
+                                        <p class="fs-40px lh-1 fw-normal text-dusty-blue mb-0">
+                                            <span class="position-relative d-inline-block">
+                                                5
+                                                <i
+                                                    class="fa-solid fa-circle-exclamation text-bright-red fs-16px warning-icon"></i>
+                                            </span>
+                                        </p>
+                                        <span><i class="fs-16px fa-light fa-arrow-up-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="custom-divider">
+                            <div class="row align-items-center">
+                                <div class="col-6 border-end custom-divider pe-3">
+                                    <div class="mt-3">
+                                        <p class="fs-14px lh-1 fw-normal text-white opacity-50 mb-2">Số lượng xe</p>
+                                        <p class="fs-24px lh-1 fw-normal text-white">223</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 ps-3">
+                                    <div class="mt-3">
+                                        <p class="fs-14px lh-1 fw-normal text-white opacity-50 mb-2">Containers</p>
+                                        <p class="fs-24px lh-1 fw-normal text-white">34</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+
+        <div class="component-item width2x width-safety pe-2" data-id="12" data-name="Thống kê - Phương tiện">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0 me-3">Phương tiện
+                    </h5>
+                    <div class="d-flex align-items-center">
+                        <button
+                            class="fs-11px lh-base fw-normal text-white bg-muted border border-muted me-2 py-1 px-3">Vào</button>
+                        <button class="fs-11px lh-base fw-normal text-white border border-muted py-1 px-3">Ra</button>
+                    </div>
+                </div>
+                <div class="card-body py-2">
+                    <div class="list-chart-bar">
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12.7333 5.20008C12.4799 4.86675 12.0866 4.66675 11.6666 4.66675H9.99992V4.00008C9.99992 3.26675 9.39992 2.66675 8.66658 2.66675H2.66659C1.93325 2.66675 1.33325 3.26675 1.33325 4.00008V10.6667C1.33325 11.4001 1.93325 12.0001 2.66659 12.0001C2.66659 13.1001 3.56659 14.0001 4.66658 14.0001C5.76658 14.0001 6.66658 13.1001 6.66658 12.0001H9.33325C9.33325 13.1001 10.2333 14.0001 11.3333 14.0001C12.4333 14.0001 13.3333 13.1001 13.3333 12.0001C14.0666 12.0001 14.6666 11.4001 14.6666 10.6667V8.22008C14.6666 7.93341 14.5733 7.64675 14.3999 7.42008L12.7333 5.20008ZM11.6666 6.00008L12.6666 7.33341H9.99992V6.00008H11.6666ZM4.66658 12.6667C4.54957 12.6666 4.43464 12.6358 4.33328 12.5773C4.23192 12.5188 4.14768 12.4348 4.08897 12.3336C4.03026 12.2323 3.99915 12.1175 3.99873 12.0005C3.99831 11.8835 4.0286 11.7684 4.08659 11.6667C4.33325 11.2467 4.99325 11.2467 5.23992 11.6667C5.29992 11.7667 5.32658 11.8801 5.32658 11.9934C5.32658 12.3601 5.02658 12.6601 4.65992 12.6601L4.66658 12.6667ZM6.15325 10.6667C6.15325 10.6667 6.11992 10.6334 6.09992 10.6201C6.05992 10.5801 6.01992 10.5467 5.98658 10.5134C5.90658 10.4401 5.81992 10.3734 5.73325 10.3201C5.59377 10.2307 5.44373 10.1591 5.28658 10.1067C5.23992 10.0934 5.19325 10.0734 5.14658 10.0601C4.99325 10.0201 4.83325 10.0001 4.66658 10.0001C4.41659 10.0001 4.33992 10.0267 4.18659 10.0601C4.13992 10.0734 4.09325 10.0934 4.04659 10.1067C3.93992 10.1401 3.83992 10.1801 3.74659 10.2334C3.69992 10.2601 3.64659 10.2867 3.59992 10.3201C3.51325 10.3801 3.42659 10.4401 3.34659 10.5134C3.30659 10.5467 3.26659 10.5801 3.22659 10.6201C3.21325 10.6401 3.19325 10.6467 3.17325 10.6667H2.65992V4.00008H8.65992V10.6667H6.14658H6.15325ZM11.3333 12.6667C11.2162 12.6666 11.1013 12.6358 10.9999 12.5773C10.8986 12.5188 10.8143 12.4348 10.7556 12.3336C10.6969 12.2323 10.6658 12.1175 10.6654 12.0005C10.665 11.8835 10.6953 11.7684 10.7533 11.6667C10.9999 11.2467 11.6599 11.2467 11.9066 11.6667C11.9666 11.7667 11.9933 11.8801 11.9933 11.9934C11.9933 12.3601 11.6933 12.6601 11.3266 12.6601L11.3333 12.6667ZM13.3333 10.6667H12.8199C12.8199 10.6667 12.7866 10.6334 12.7666 10.6201C12.7266 10.5801 12.6866 10.5467 12.6533 10.5134C12.5733 10.4401 12.4866 10.3734 12.3999 10.3201C12.2604 10.2307 12.1104 10.1591 11.9533 10.1067C11.9066 10.0934 11.8599 10.0734 11.8133 10.0601C11.6599 10.0201 11.4999 10.0001 11.3333 10.0001C11.0833 10.0001 11.0199 10.0267 10.8666 10.0601C10.8266 10.0667 10.7866 10.0801 10.7466 10.0934C10.6266 10.1334 10.5066 10.1801 10.3999 10.2401L10.3199 10.2801C10.2066 10.3467 10.0999 10.4201 9.99992 10.5134V8.67341H13.3333V10.6734V10.6667Z"
+                                        fill="#F2C94C" />
+                                </svg>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title mb-0 fs-14px">Xe container / Tải</div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="progress-track flex-grow-1">
+                                        <div class="progress-fill fill-yellow" style="width: 45%;"></div>
+                                    </div>
+                                    <span class="progress-value ms-2">23</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.00456 11.3333C6.00456 11.687 5.86408 12.0261 5.61403 12.2761C5.36398 12.5262 5.02485 12.6667 4.67122 12.6667C4.3176 12.6667 3.97846 12.5262 3.72841 12.2761C3.47837 12.0261 3.33789 11.687 3.33789 11.3333C3.33789 10.9797 3.47837 10.6406 3.72841 10.3905C3.97846 10.1405 4.3176 10 4.67122 10C5.02485 10 5.36398 10.1405 5.61403 10.3905C5.86408 10.6406 6.00456 10.9797 6.00456 11.3333ZM12.6712 11.3333C12.6712 11.687 12.5307 12.0261 12.2807 12.2761C12.0307 12.5262 11.6915 12.6667 11.3379 12.6667C10.9843 12.6667 10.6451 12.5262 10.3951 12.2761C10.145 12.0261 10.0046 11.687 10.0046 11.3333C10.0046 10.9797 10.145 10.6406 10.3951 10.3905C10.6451 10.1405 10.9843 10 11.3379 10C11.6915 10 12.0307 10.1405 12.2807 10.3905C12.5307 10.6406 12.6712 10.9797 12.6712 11.3333Z"
+                                        stroke="#00C896" stroke-width="1.5" />
+                                    <path
+                                        d="M1.33797 6.66659H12.0046M1.33797 6.66659C1.33797 7.18659 1.32464 8.69325 1.34064 10.1733C1.36464 10.6533 1.44464 11.0533 3.33931 11.3333M1.33797 6.66659C1.48197 5.50659 2.10797 4.13325 2.42797 3.61325M6.00464 6.66659V3.33325M9.99797 11.3333H6.0013M1.34864 3.33325H8.15997C8.15997 3.33325 8.51997 3.33325 8.83997 3.36525C9.43931 3.42125 9.94264 3.69325 10.4466 4.37325C10.98 5.09325 11.39 6.00525 11.9333 6.49325C12.8366 7.30392 14.5553 7.05325 14.6513 8.77325C14.6753 9.65325 14.6753 10.6133 14.6353 10.7733C14.5713 11.2446 14.208 11.3213 13.756 11.3333C13.364 11.3439 12.8913 11.3146 12.6606 11.3333"
+                                        stroke="#00C896" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title mb-0 fs-14px">Ô tô con</div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="progress-track flex-grow-1">
+                                        <div class="progress-fill fill-green" style="width: 100%;"></div>
+                                    </div>
+                                    <span class="progress-value ms-2">423</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2.66675 8.83733V8H1.33342V6.66667H5.57675L7.46675 5.33333H9.79475L9.06675 3.33333H7.33342V2H10.0001L10.7281 4H13.3334V6H11.4561L12.4267 8.668C13.1633 8.69141 13.8654 8.98508 14.3993 9.49299C14.9331 10.0009 15.2614 10.6875 15.3214 11.422C15.3815 12.1564 15.1692 12.8872 14.7249 13.4751C14.2806 14.063 13.6356 14.4669 12.9126 14.6096C12.1897 14.7524 11.4395 14.6241 10.8052 14.2492C10.1708 13.8743 9.69655 13.2791 9.47292 12.5769C9.24928 11.8748 9.29188 11.1149 9.5926 10.4422C9.89331 9.76949 10.4311 9.23096 11.1034 8.92933L10.2794 6.66667H9.64808L8.59342 10.58L8.59208 10.5793L8.59342 10.5827L6.64342 11.2927C6.65897 11.4153 6.66675 11.54 6.66675 11.6667C6.66658 12.2166 6.51525 12.756 6.22928 13.2257C5.94331 13.6955 5.53371 14.0776 5.04525 14.3303C4.55679 14.583 4.00826 14.6966 3.45962 14.6586C2.91097 14.6206 2.38332 14.4326 1.93433 14.115C1.48534 13.7974 1.13229 13.3625 0.913756 12.8578C0.695227 12.3532 0.61963 11.7981 0.695228 11.2534C0.770825 10.7086 0.994707 10.1952 1.34241 9.76907C1.69011 9.34297 2.14824 9.02065 2.66675 8.83733ZM4.00008 8.68467C4.44238 8.73418 4.86812 8.88149 5.24644 9.11591C5.62476 9.35033 5.94619 9.66599 6.18742 10.04L7.49208 9.56467L8.26875 6.66667H7.90408L6.00008 8H4.00008V8.68467ZM3.66675 13.3333C4.10878 13.3333 4.5327 13.1577 4.84526 12.8452C5.15782 12.5326 5.33342 12.1087 5.33342 11.6667C5.33342 11.2246 5.15782 10.8007 4.84526 10.4882C4.5327 10.1756 4.10878 10 3.66675 10C3.22472 10 2.8008 10.1756 2.48824 10.4882C2.17568 10.8007 2.00008 11.2246 2.00008 11.6667C2.00008 12.1087 2.17568 12.5326 2.48824 12.8452C2.8008 13.1577 3.22472 13.3333 3.66675 13.3333ZM12.3334 13.3333C12.7754 13.3333 13.1994 13.1577 13.5119 12.8452C13.8245 12.5326 14.0001 12.1087 14.0001 11.6667C14.0001 11.2246 13.8245 10.8007 13.5119 10.4882C13.1994 10.1756 12.7754 10 12.3334 10C11.8914 10 11.4675 10.1756 11.1549 10.4882C10.8423 10.8007 10.6667 11.2246 10.6667 11.6667C10.6667 12.1087 10.8423 12.5326 11.1549 12.8452C11.4675 13.1577 11.8914 13.3333 12.3334 13.3333Z"
+                                        fill="#3B9EFF" />
+                                </svg>
+
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title mb-0 fs-14px">Xe máy</div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="progress-track flex-grow-1">
+                                        <div class="progress-fill fill-blue" style="width: 30%;"></div>
+                                    </div>
+                                    <span class="progress-value ms-2">33</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon">
+                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M4.38564 0C4.01424 0 3.65806 0.148999 3.39545 0.414218C3.13284 0.679438 2.9853 1.03915 2.9853 1.41423C2.9853 1.78931 3.13284 2.14902 3.39545 2.41424C3.65806 2.67946 4.01424 2.82846 4.38564 2.82846H5.54885C5.86439 2.82846 6.01376 2.89257 6.15939 3.02645C6.33864 3.19239 6.60377 3.55066 6.89504 4.32943C6.03763 4.37885 5.2062 4.64468 4.47684 5.10259C3.74748 5.56049 3.14349 6.19584 2.72017 6.95047L2.19178 7.89518C1.65143 7.97057 1.14949 8.21968 0.76026 8.60564C0.371033 8.99159 0.115214 9.49387 0.0306804 10.0381C-0.0538534 10.5823 0.0373914 11.1396 0.290905 11.6274C0.544419 12.1152 0.946725 12.5075 1.43826 12.7464C1.92979 12.9853 2.48442 13.0579 3.02004 12.9536C3.55565 12.8493 4.04377 12.5736 4.41212 12.1673C4.78048 11.761 5.00949 11.2457 5.06525 10.6977C5.12101 10.1497 5.00055 9.59809 4.72172 9.12462L5.15675 8.34585C5.36007 7.9825 5.65528 7.68019 6.01219 7.46982C6.3691 7.25944 6.77492 7.14855 7.18817 7.14847H7.8398L8.19081 8.21762C7.73129 8.48643 7.36685 8.89407 7.14885 9.38311C6.93084 9.87215 6.87026 10.4179 6.97564 10.9436C7.08102 11.4692 7.34704 11.9483 7.73622 12.3131C8.12541 12.678 8.61815 12.9104 9.14502 12.9775C9.67189 13.0447 10.2063 12.9431 10.6731 12.6873C11.1398 12.4314 11.5153 12.0342 11.7466 11.5514C11.9779 11.0687 12.0535 10.5248 11.9625 9.99637C11.8716 9.46798 11.6188 8.98171 11.2398 8.60607C10.8645 7.37061 10.4686 6.14162 10.0523 4.91964L9.6789 3.7958C9.27187 2.56636 8.76402 1.59337 8.04144 0.933392C7.26286 0.218734 6.38531 0 5.54885 0H4.38564Z"
+                                        fill="#CCCCCC" />
+                                </svg>
+
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title mb-0 fs-14px">Không xác định</div>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="progress-track flex-grow-1">
+                                        <div class="progress-fill fill-muted" style="width: 10%;"></div>
+                                    </div>
+                                    <span class="progress-value ms-2">23</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item width-4x border-divider-start ps-2" data-id="13"
+            data-name="Thống kê - Đo đếm ra vào">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <span class="d-flex align-items-center ">
+                        <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0 me-3">Đo đếm ra
+                            vào
+                        </h5>
+                        <div class="d-flex align-items-center">
+                            <button
+                                class="fs-11px lh-base fw-normal text-white bg-muted border border-muted me-2 py-1 px-3">Ô
+                                tô</button>
+                            <button class="fs-11px lh-base fw-normal text-white border border-muted py-1 px-3">Xe
+                                máy</button>
+                        </div>
+                    </span>
+                    <div class="d-flex align-items-center gap-2">
+                        <select class="form-select w-auto py-1 fs-12px" aria-label="Default select example"
+                            id="areaSelect">
+                            <option selected>Tất cả khu vực</option>
+                            <option value="1">Khu vực A</option>
+                            <option value="2">Khu vực B</option>
+                            <option value="3">Khu vực C</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="card-body py-2">
+                    <div class="chart-scroll-wrapper" id="trafficChartWrapper" style="width: 100%; overflow-x: auto;">
+                        <div id="trafficChartInner" style="height: 140px; width: 100%;"> <canvas
+                                id="trafficBarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mt-3">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center">
+                                <span class="size-10px rounded-3px bg-dot-cyan"></span>
+                                <p class="ms-2 mb-0 fs-12px lh-sm fw-normal text-custom-gray">Vào</p>
+                            </div>
+                            <p id="total-vao" class="ms-4 fs-16px lh-1 fw-normal text-white mb-0">0</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center">
+                                <span class="size-10px rounded-3px bg-dot-orange"></span>
+                                <p class="ms-2 mb-0 fs-12px lh-sm fw-normal text-custom-gray">Ra</p>
+                            </div>
+                            <p id="total-ra" class="ms-4 fs-16px lh-1 fw-normal text-white mb-0">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="24" data-name="ENAV - Bản đồ - Đối tượng">
+            <ul class="list-map-object list-unstyled d-flex justify-content-center align-items-center flex-wrap">
+                <li class="item item-seaview-camera mt-2" data-type="seaviewcamera"><i
+                        class="icon fa-regular fa-cctv"></i>
+                    <span>Camera hướng biển</span>
+                </li>
+                <li class="item item-inside-camera mt-2" data-type="insideviewcamera"><i
+                        class="icon fa-regular fa-cctv"></i>
+                    <span>Camera trong cảng</span>
+                </li>
+                <li class="item item-float mt-2" data-type="float"><i class="icon fa-regular fa-buoy-mooring"></i>
+                    <span>Phao hàng hải</span>
+                </li>
+                <li class="item item-ship-boat mt-2" data-type="shipboat"><i class="icon fa-regular fa-ship"></i>
+                    <span>Tàu thuyền</span>
+                </li>
+            </ul>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="25" data-name="ENAV - Bản đồ - Thống kê bản đồ">
+            <div class="maker-stats-block">
+                <div class="mb-1 text-uppercase">Thống kê bản đồ</div>
+                <div class="item d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <div class="small opacity-50">Cụm Camera ngoài</div>
+                        <div class="text-primary lh-1"><span id="seaviewcamera_in_view">-</span>/ 4
+                        </div>
+                    </div>
+                    <i class="icon fa-regular fa-camera-cctv"></i>
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <div class="small opacity-50">Cụm Camera trong</div>
+                        <div class="text-primary lh-1"><span id="insideviewcamera_in_view">-</span>/ 4
+                        </div>
+                    </div>
+                    <i class="icon fa-regular fa-camera-cctv"></i>
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <div class="small opacity-50">Tàu thuyền</div>
+                        <div class="text-primary lh-1"><span id="shipboat_in_view">-</span>/ 5
+                        </div>
+                    </div>
+                    <i class="icon fa-regular fa-ship"></i>
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <div class="small opacity-50">Phao hàng hải</div>
+                        <div class="text-primary lh-1"><span id="float_in_view">-</span>/ 2
+                        </div>
+                    </div>
+                    <i class="icon fa-regular fa-buoy-mooring"></i>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="26" data-name="ENAV - Thông tin thủy văn">
+            <ul class="nav stats-nav">
+                <li class="nav-item nav-item-tide ms-2">
+                    <div class="ps-2">
+                        <div class="fs-5 fw-normal lh-sm text-depskyblue">3.5 - 3.1m</div>
+                        <div class="small fw-normal lh-sm opacity-75">Thủy triều</div>
+                    </div>
+                </li>
+                <li class="nav-item nav-item-water-level">
+                    <div class="icon me-2">
+                        <img src="img/water_level.svg" alt="" class="w-28px h-28px">
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center fs-5 fw-normal lh-sm text-depskyblue">
+                            2.2m
+                            <i class="fa-solid fa-circle-exclamation small ms-2 text-depskyblue"></i>
+                        </div>
+                        <div class="small fw-normal lh-1 opacity-75">Mực nước</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="27" data-name="ENAV - Thông tin cảnh báo">
+            <div class="card mb-0">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title text-uppercase fs-6 fw-bold text-primary mb-0">
+                        <i class="fa-regular fa-bell me-2 fs-4"></i>Hệ thống cảnh báo
+                    </h5>
+                </div>
+                <div class="card-body py-0">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 me-2">
+                            <div class="radar mt-2">
+                                <div class="media-placeholder">
+                                    <div class="dot warning animate__animated animate__flash animate__slow animate__infinite"
+                                        style="left: 20%;top: 25%;"></div>
+                                    <div class="dot danger animate__animated animate__flash animate__fast animate__infinite"
+                                        style="left: 80%;top: 50%;"></div>
+                                    <div class="dot warning animate__animated animate__flash animate__slow animate__infinite"
+                                        style="left: 24%;top: 84%;"></div>
+                                    <div class="dot success animate__animated animate__flash animate__slower animate__infinite"
+                                        style="left: 60%;top: 73%;"></div>
+                                    <div class="bg"></div>
+                                    <div class="inner">
+                                        <div class="inner">
+                                            <div class="inner"></div>
+                                        </div>
+                                        <div class="beam"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <!-- BEGIN Security Block -->
+                            <div class="block-content d-flex">
+                                <div class="block-item d-flex flex-column w-100">
+                                    <div class="item-boat border border-top-0 border-start-0 border-end-0 pb-3 ms-2">
+                                        <div class="item-boat-inner d-flex align-items-center justify-content-around">
+                                            <div class="item-boat-icon">
+                                                <i class="fa-regular fa-ship fs-1 text-neon-turquoise"></i>
+                                            </div>
+                                            <div class="item-boat-des text-center">
+                                                <div class="small lh-base opacity-50">Tàu thuyền</div>
+                                                <div class="fs-3 lh-1 text-neon-turquoise">123</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-around align-items-center h-100 pt-3">
+                                        <div class="item-vehicle">
+                                            <div class="item-vehicle-inner d-flex flex-column align-items-center">
+                                                <div class="item-vehicle-icon">
+                                                    <i class="fa-solid fa-car fs-2 text-light-sky-blue"></i>
+                                                </div>
+                                                <div class="small lh-base opacity-50">Phương tiện</div>
+                                                <div class="fs-3 lh-1 text-light-sky-blue">54</div>
+                                            </div>
+                                        </div>
+                                        <div class="item-identification">
+                                            <div
+                                                class="item-identification-inner d-flex flex-column align-items-center">
+                                                <div class="item-identification-icon">
+                                                    <i class="fa-light fa-users fs-2 text-soft-olive-yellow"></i>
+                                                </div>
+                                                <div class="small lh-base opacity-50">Nhận dạng</div>
+                                                <div class="fs-3 lh-1 text-soft-olive-yellow">32</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END List Block -->
+                        </div>
+                    </div>
+                </div>
+                <div class="warning-system rounded-2 mt-3">
+                    <div class="warning-system-inner">
+                        <ul class="nav nav-menu-list mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link">Tất cả</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">Tàu thuyền</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">Phương tiện</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">Khuôn mặt</a>
+                            </li>
+                        </ul>
+
+                        <div class="list-warning-vehicle">
+                            <div class="warning-vehicle-item mb-2">
+                                <div class="vehicle-item-inner d-flex">
+                                    <div class="d-flex">
+                                        <div class="vehicle-item-avatar me-2">
+                                            <img src="img/temp/boat.svg" alt=""
+                                                class="w-64px h-64px object-fit-cover rounded-2">
+                                            <i class="icon-zoom-img fa-regular fa-magnifying-glass"></i>
+                                        </div>
+                                        <div class="vehicle-item-des">
+                                            <div class="fs-6 lh-base text-white">Xâm nhập vùng cấm</div>
+                                            <div class="fs-6 lh-sm opacity-50">[Loại tàu] - [tên tàu] - Thông tin thêm
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vehicle-item-time ms-auto text-primary small lh-sm">
+                                        <i class="fa-regular fa-clock-three"></i>
+                                        2:30
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="warning-vehicle-item mb-2">
+                                <div class="vehicle-item-inner d-flex">
+                                    <div class="d-flex">
+                                        <div class="vehicle-item-avatar me-2">
+                                            <img src="img/temp/boat-fish.svg" alt="">
+                                            <i class="icon-zoom-img fa-regular fa-magnifying-glass"></i>
+                                        </div>
+                                        <div class="vehicle-item-des">
+                                            <div class="fs-6 lh-base text-white">Đỗ quá lâu</div>
+                                            <div class="fs-6 lh-sm opacity-50">[Loại tàu] - [tên tàu] - Thông tin thêm
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vehicle-item-time ms-auto text-primary small lh-sm">
+                                        <i class="fa-regular fa-clock-three"></i>
+                                        2:30
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="warning-vehicle-item mb-2">
+                                <div class="vehicle-item-inner d-flex">
+                                    <div class="d-flex">
+                                        <div class="vehicle-item-avatar me-2">
+                                            <img src="img/temp/oto-transport.svg" alt="">
+                                            <i class="icon-zoom-img fa-regular fa-magnifying-glass"></i>
+                                        </div>
+                                        <div class="vehicle-item-des">
+                                            <div class="fs-6 lh-base text-white">Phát hiện phương tiện bị cấm</div>
+                                            <div class="fs-6 lh-sm opacity-50">Xe 15B - 02324</div>
+                                        </div>
+                                    </div>
+                                    <div class="vehicle-item-time ms-auto text-primary small lh-sm">
+                                        <i class="fa-regular fa-clock-three"></i>
+                                        2:30
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="28" data-name="ENAV - Hàng rào ảo">
+            <div class="card mb-0 mt-2">
+                <div class="card-body py-0">
+                    <div class="virtual-fence">
+                        <div class="virtual-fence-inner d-flex flex-column h-100">
+                            <div
+                                class="virtual-fence-title mb-2 d-flex align-items-center fs-6 fw-semibold lh-1 text-primary">
+                                <i class="fa-solid fa-triangle-exclamation me-2 text-primary"></i>
+                                Hàng rào ảo
+                            </div>
+                            <div class="mb-2">
+                                <div class="virtual-fence-item d-flex align-items-center">
+                                    <div class="fence-item-icon me-2 ps-2" style="transform: skew(-45deg);">
+                                        <i class="fa-solid fa-ellipsis-vertical text-primary"></i>
+                                    </div>
+                                    <div class="fence-item-des ms-2">
+                                        <div class="fs-6 lh-sm text-white">
+                                            Hàng rào ảo vùng số 1
+                                            <i class="fa-solid fa-circle-exclamation text-primary"></i>
+                                        </div>
+                                        <div class="small lh-sm opacity-50">
+                                            18:30 - 5:30 - Camera N1, N2
+                                        </div>
+                                    </div>
+                                    <div class="fence-item-switch ms-auto">
+                                        <div class="pill-toggle">
+                                            <div class="pill-thumb"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <div class="virtual-fence-item d-flex align-items-center">
+                                    <div class="fence-item-icon me-2 ps-2" style="transform: skew(-45deg);">
+                                        <i class="fa-solid fa-ellipsis-vertical text-primary"></i>
+                                    </div>
+                                    <div class="fence-item-des ms-2">
+                                        <div class="fs-6 lh-sm text-white">
+                                            Hàng rào ảo vùng số 2
+                                            <i class="fa-solid fa-circle-exclamation text-primary"></i>
+                                        </div>
+                                        <div class="small lh-sm opacity-50">
+                                            18:30 - 5:30 - Camera N3, N4
+                                        </div>
+                                    </div>
+                                    <div class="fence-item-switch ms-auto">
+                                        <div class="pill-toggle">
+                                            <div class="pill-thumb"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item width2x me-2" data-id="29" data-name="ENAV - Thống kê - Tàu thuyền">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0 me-3">Lưu lượng
+                        Tàu thuyền</h5>
+                </div>
+                <div class="card-body py-0">
+                    <div class="chart-traffic-block d-flex flex-wrap align-items-center">
+                        <div class="col-traffic-jam flex-shrink-0">
+                            <div class="card-boat-traffic-flow-inner">
+                                <div class="card-boat-traffic-flow--today">
+                                    <div
+                                        class="card-boat-traffic-flow--today-inner d-flex align-items-center justify-content-center">
+                                        <div class="boat-traffic-flow--today-icon me-2">
+                                            <i class="fa-regular fa-ship text-neon-turquoise"></i>
+                                        </div>
+                                        <div class="boat-traffic-flow--today-des ms-2">
+                                            <div
+                                                class="boat-traffic-flow--today-text small fw-normal lh-base opacity-50 text-nowrap">
+                                                Lượt tàu thuyền</div>
+                                            <div
+                                                class="boat-traffic-flow--today-number fs-2 fw-normal lh-base text-white">
+                                                3.904</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mt-2">
+                                <div class="card-boat-traffic-flow--yesterday">
+                                    <div
+                                        class="boat-traffic-flow--yesterday-inner d-flex align-items-center justify-content-between">
+                                        <div class="boat-traffic-flow--yesterday-text small fw-normal lh-1 opacity-50">
+                                            Hôm
+                                            qua</div>
+                                        <div
+                                            class="boat-traffic-flow--yesterday-number small fw-normal lh-1 opacity-50">
+                                            3.904</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-traffic-flow flex-grow-1">
+                            <div class="list-chart-bar green ">
+                                <!-- BEGIN Item -->
+                                <div class="item">
+                                    <div class="icon"><i class="fa-solid fa-container-storage"></i></div>
+                                    <div class="item-content">
+                                        <div class="item-title">Tàu chở hàng</div>
+                                        <div class="item-p-bar">
+                                            <div class="track" style="width: 100%;"><span class="value">134</span></div>
+                                            <span class="change up">+0,33</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Item -->
+                                <!-- BEGIN Item -->
+                                <div class="item">
+                                    <div class="icon"><i class="fa-light fa-fishing-rod"></i></div>
+                                    <div class="item-content">
+                                        <div class="item-title">Tàu đánh cá</div>
+                                        <div class="item-p-bar">
+                                            <div class="track" style="width: 51%;"><span class="value">69</span></div>
+                                            <span class="change up">+1,78</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Item -->
+                                <!-- BEGIN Item -->
+                                <div class="item">
+                                    <div class="icon"><i class="fa-regular fa-wrench"></i></div>
+                                    <div class="item-content">
+                                        <div class="item-title">Tàu kỹ thuật</div>
+                                        <div class="item-p-bar">
+                                            <div class="track" style="width: 85%;"><span class="value">110</span></div>
+                                            <span class="change down">-2,09</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Item -->
+                                <!-- BEGIN Item -->
+                                <div class="item">
+                                    <div class="icon"><i class="fa-regular fa-life-ring"></i></div>
+                                    <div class="item-content">
+                                        <div class="item-title">Khác</div>
+                                        <div class="item-p-bar">
+                                            <div class="track" style="width: 64%;"><span class="value">87</span></div>
+                                            <span class="change down">-1,15</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Item -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item width2x me-2" data-id="30" data-name="ENAV - Thống kê - Phương tiện">
+            <div class="card mb-0">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0 me-3">Lưu lượng
+                        Giao thông</h5>
+                </div>
+                <div class="card-body py-0">
+                    <div class="chart-traffic-block d-flex flex-wrap align-items-center">
+                        <div class="col-traffic-jam flex-shrink-0">
+                            <div class="card-boat-traffic-flow-inner">
+                                <div class="card-boat-traffic-flow--today">
+                                    <div
+                                        class="card-boat-traffic-flow--today-inner d-flex align-items-center justify-content-center">
+                                        <div class="boat-traffic-flow--today-icon me-2">
+                                            <i class="fa-solid fa-car-rear text-light-sky-blue"></i>
+                                        </div>
+                                        <div class="boat-traffic-flow--today-des ms-2">
+                                            <div
+                                                class="boat-traffic-flow--today-text small fw-normal lh-base opacity-50 text-nowrap">
+                                                Lượt phương tiện</div>
+                                            <div
+                                                class="boat-traffic-flow--today-number fs-2 fw-normal lh-base text-white">
+                                                4.304</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mt-2">
+                                <div class="card-boat-traffic-flow--yesterday">
+                                    <div
+                                        class="boat-traffic-flow--yesterday-inner d-flex align-items-center justify-content-between">
+                                        <div class="boat-traffic-flow--yesterday-text small fw-normal lh-1 opacity-50">
+                                            Hôm
+                                            qua</div>
+                                        <div
+                                            class="boat-traffic-flow--yesterday-number small fw-normal lh-1 opacity-50">
+                                            3.904</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-traffic-flow flex-grow-1">
+                            <div class="list-chart-bar">
+                                <!-- BEGIN Item -->
+                                <div class="item">
+                                    <div class="icon"><i class="fa-regular fa-truck-container"></i></div>
+                                    <div class="item-content">
+                                        <div class="item-title">Xe Container</div>
+                                        <div class="item-p-bar">
+                                            <div class="track" style="width: 100%;"><span class="value">134</span></div>
+                                            <span class="change up">+0,33</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Item -->
+                                <!-- BEGIN Item -->
+                                <div class="item">
+                                    <div class="icon"><i class="fa-regular fa-car-side"></i></div>
+                                    <div class="item-content">
+                                        <div class="item-title">Xe kỹ thuật</div>
+                                        <div class="item-p-bar">
+                                            <div class="track" style="width: 51%;"><span class="value">69</span></div>
+                                            <span class="change up">+1,78</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Item -->
+                                <!-- BEGIN Item -->
+                                <div class="item">
+                                    <div class="icon"><i class="fa-regular fa-bicycle"></i></div>
+                                    <div class="item-content">
+                                        <div class="item-title">Xe máy</div>
+                                        <div class="item-p-bar">
+                                            <div class="track" style="width: 85%;"><span class="value">110</span></div>
+                                            <span class="change down">-2,09</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Item -->
+                                <!-- BEGIN Item -->
+                                <div class="item">
+                                    <div class="icon"><i class="fa-regular fa-rhombus"></i></div>
+                                    <div class="item-content">
+                                        <div class="item-title">Khác</div>
+                                        <div class="item-p-bar">
+                                            <div class="track" style="width: 64%;"><span class="value">87</span></div>
+                                            <span class="change down">-1,15</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Item -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item item-passenger-movements me-2" data-id="31"
+            data-name="ENAV - Thống kê - Lượt người ra vào cảng">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0 me-3">Lưu lượng
+                        Người</h5>
+                </div>
+                <div class="card-body py-0">
+                    <div class="port-passenger-traffic flex-shrink-0">
+                        <div
+                            class="port-passenger-traffic-inner d-flex flex-column align-items-center justify-content-center">
+                            <div class="port-passenger-traffic-icon">
+                                <i class="fa-light fa-users"></i>
+                            </div>
+                            <div class="port-passenger-traffic-text small fw-normal lh-sm opacity-50">Lượt ra vào cảng
+                            </div>
+                            <div class="port-passenger-traffic-number fs-3 fw-normal lh-sm mt-2">
+                                12.304
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="32" data-name="ENAV - Thông tin hệ thống">
+            <div class="card mb-0">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0 me-3">Hệ thống</h5>
+                </div>
+                <div class="card-body py-0">
+                    <div class="traffic-volume-container flex-grow-1 p-3 d-flex flex-column justify-content-center">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="traffic-volume-camera">
+                                    <div class="volume-camera-inner d-flex align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <div class="volume-camera-icon me-2">
+                                                <i class="icon fa-solid fa-camera-cctv fs-2"></i>
+                                            </div>
+                                            <div class="volume-camera-des">
+                                                <div class="fs-12px lh-sm text-white">Hệ thống Camera</div>
+                                                <div class="fs-12px lh-sm text-light-sky-blue">16 camera</div>
+                                            </div>
+                                        </div>
+                                        <div class="list-dot ms-auto">
+                                            <div class="dot-one"></div>
+                                            <div class="dot-one"></div>
+                                            <div class="dot-one"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="traffic-volume-camera">
+                                    <div class="volume-camera-inner d-flex align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <div class="volume-camera-icon me-2">
+                                                <i class="icon fa-regular fa-memo fs-2 opacity-75"></i>
+                                            </div>
+                                            <div class="volume-camera-des">
+                                                <div class="fs-12px lh-sm text-white">Serve AI</div>
+                                                <div class="fs-12px lh-sm text-light-sky-blue">2 camera</div>
+                                            </div>
+                                        </div>
+                                        <div class="list-dot ms-auto">
+                                            <div class="dot-one"></div>
+                                            <div class="dot-one"></div>
+                                            <div class="dot-one"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="traffic-volume-camera">
+                                    <div class="volume-camera-inner d-flex align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <div class="volume-camera-icon me-2">
+                                                <i class="icon fa-regular fa-microchip fs-2"></i>
+                                            </div>
+                                            <div class="volume-camera-des">
+                                                <div class="fs-12px lh-sm text-white">Hệ thống Cảm biến</div>
+                                                <div class="fs-12px lh-sm text-light-sky-blue">125 cảm biến</div>
+                                            </div>
+                                        </div>
+                                        <div class="list-dot ms-auto">
+                                            <div class="dot-one"></div>
+                                            <div class="dot-one"></div>
+                                            <div class="dot-one"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="traffic-volume-camera">
+                                    <div class="volume-camera-inner d-flex align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <div class="volume-camera-icon me-2">
+                                                <i class="icon fa-solid fa-tower-cell fs-3"></i>
+                                            </div>
+                                            <div class="volume-camera-des">
+                                                <div class="fs-12px lh-sm text-white">Đường truyền</div>
+                                                <div class="fs-12px lh-1m text-light-sky-blue">12 điểm</div>
+                                            </div>
+                                        </div>
+                                        <div class="list-dot ms-auto">
+                                            <div class="dot-one"></div>
+                                            <div class="dot-one"></div>
+                                            <div class="dot-one"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+    </div><!-- END Components Preload -->
+    <!-- BEGIN App -->
+    <div class="app">
+        <!-- BEGIN Site Header -->
+        <div class="app-header">
+            <div class="header-inner">
+                <!-- BEGIN Header Start -->
+                <div class="header-start">
+                    <div class="site-brand">
+                        <p class="site-sologan lh-sm text-uppercase small opacity-50 mb-0">Hệ thống giám sát</p>
+                        <h1 class="site-title lh-sm text-uppercase text-primary mb-0">
+                            An ninh bãi xe
+                        </h1>
+                    </div>
+                </div><!-- BEGIN Header Start -->
+                <!-- BEGIN Header Center -->
+                <div class="header-center component-container" data-name="header_center">
+                    <div class="label">Header trên trái</div>
+                    <!-- Component Placeholder 1 -->
+                </div><!-- END Header Center -->
+                <!-- BEGIN Header End -->
+                <div class="header-end component-container" data-name="header_end">
+                    <div class="label">Header trên phải</div>
+                    <!-- Component Placeholder 2,3 -->
+
+                </div><!-- END Header End -->
+                <div class="header-end ms-2">
+                    <!-- BEGIN Btn Fullscreen -->
+                    <button id="btn-fullscreen" class="btn btn-32 rounded-circle btn-light btn-fullscreen ms-1">
+                        <i class="icon fa-regular fa-up-right-and-down-left-from-center text-white"></i>
+                    </button>
+                    <!-- END Btn Fullscreen -->
+                    <!-- BEGIN Btn Menu -->
+                    <button class="btn btn-32 rounded-circle btn-light btn-menu ms-1" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"><i
+                            class="icon fa-regular fa-bars text-white"></i></button>
+                    <!-- END Btn Menu -->
+                </div>
+            </div>
+            <div class="line">
+                <div class="span_left">
+                    <span class="opacity-50 me-2">&nbsp;</span><span class="opacity-25">&nbsp;</span>
+                </div>
+                <div class="span_right">
+                    <span class="opacity-25">&nbsp;</span><span class="opacity-50 ms-2">&nbsp;</span>
+                </div>
+            </div>
+        </div><!-- END Site Header -->
+        <!-- BEGIN app Main -->
+        <div class="app-main">
+            <div class="main-content">
+                <!-- BEGIN Main Map -->
+                <div class="content-map">
+                    <div class="vignette-container">
+                        <img src="img/parking-dashboard-dark.png" alt="Map Background" class="no-zoom" data-no-lightbox>
+
+                        <div class="map-icon" data-name="Cam-07" data-location="Khu vực J" data-status="Hoạt động">
+                            <!-- <img class="custom-cam-icon" src="img/camera-icon-custom.svg" alt="Camera"> -->
+
+
+                        </div>
+                        <div class="map-icon warning" data-name="Cam-06" data-location="Khu vực F"
+                            data-status="Cảnh báo">
+                            <img class="custom-cam-icon" src="img/camera-icon-custom.svg" alt="Camera">
+                        </div>
+                        <div class="map-icon" data-name="Cam-04" data-location="Khu vực D" data-status="Hoạt động">
+                            <img class="custom-cam-icon" src="img/camera-icon-custom.svg" alt="Camera">
+                        </div>
+                        <div class="map-icon" data-name="Cam-01" data-location="Khu vực A" data-status="Hoạt động">
+                            <img class="custom-cam-icon" src="img/camera-icon-custom.svg" alt="Camera">
+                        </div>
+                        <div class="map-icon" data-name="Cam-09" data-location="Khu vực I" data-status="Hoạt động">
+                            <img class="custom-cam-icon" src="img/camera-icon-custom.svg" alt="Camera">
+                        </div>
+                        <div class="map-icon active" data-name="Cam-02" data-location="Khu vực B"
+                            data-status="Hoạt động">
+                            <img class="custom-cam-icon" src="img/camera-icon-custom.svg" alt="Camera">
+                        </div>
+                        <div class="map-icon" data-name="Cam-03" data-location="Khu vực C" data-status="Hoạt động">
+                            <img class="custom-cam-icon" src="img/camera-icon-custom.svg" alt="Camera">
+                        </div>
+                    </div>
+                    <div class="map-wrapper">
+                        <!-- <div id="map" class="w-100 h-100"></div> -->
+                        <!-- BEGIN Shadow -->
+                        <div class="top">&nbsp;</div>
+                        <div class="bottom">&nbsp;</div>
+                        <div class="left">&nbsp;</div>
+                        <div class="right">&nbsp;</div>
+                        <!-- END Shadow -->
+                    </div>
+                    <div class="map-top-left">
+                        <div class="p-2 component-container" data-name="map_top_left">
+                            <div class="label">Map Top Left</div>
+                            <!-- Component Placeholder 6 -->
+                        </div>
+                    </div>
+                    <div class="map-top-right">
+                        <div class="p-2 component-container" data-name="map_top_right">
+                            <div class="label">Map Top Right</div>
+                            <!-- Component Placeholder 7 -->
+                        </div>
+                    </div>
+                    <div class="map-bottom-left">
+                        <div class="p-2 component-container" data-name="map_bottom_left">
+                            <div class="label">Map Bottom left</div>
+                            <!-- Component Placeholder 8 -->
+                        </div>
+                    </div>
+                    <div class="map-bottom-center">
+                        <!-- BEGIN content Footer -->
+                        <div class="content-footer component-container" data-name="content_footer">
+                            <div class="label">Content Footer</div>
+                        </div><!-- END content Footer -->
+                    </div>
+                    <div class="map-bottom-right">
+                        <div class="p-2 component-container" data-name="map_bottom_right">
+                            <div class="label">Map Bottom Right</div>
+                            <!-- Component Placeholder 9 -->
+                        </div>
+                    </div>
+                </div><!-- END Main Map -->
+            </div>
+            <!-- BEGIN Main Sidebar -->
+            <div class="main-sidebar main-sidebar-customer">
+                <!-- Component Placeholder 4,5 -->
+                <div class="h-0px">
+                    <div class="p-2 component-container" data-name="main_sidebar">
+                        <div class="label">Main Sidebar</div>
+                    </div>
+                </div>
+            </div><!-- END Main Sidebar -->
+        </div><!-- END Site Main-->
+        <!-- BEGIN App Footer -->
+        <div class="app-footer component-container" data-name="app_footer">
+            <div class="label">App Footer</div>
+            <!-- Component Placeholder 10,11,12,13 -->
+        </div>
+        <!-- BEGIN App Footer -->
+    </div><!-- END App -->
+    <!-- BEGIN Modal Login -->
+    <div class="modal" id="loginModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered shadow-lg">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title text-primary mb-2">Đăng nhập</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Vui lòng đăng nhập để sử dụng hệ thống</p>
+                    <div class="mb-2">
+                        <label class="mb-1">Tên đăng nhập / email</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control border-end-0" placeholder="">
+                            <span class="input-group-text bg-transparent border-start-0"><i
+                                    class="fa-regular fa-user opacity-50"></i></span>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="mb-1">Mật khẩu</label>
+                        <div class="input-group mb-3">
+                            <input type="password" name="password" class="form-control border-end-0" placeholder="">
+                            <span class="input-group-text bg-transparent border-start-0"><i
+                                    class="fa-regular fa-eye opacity-50"></i></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-sm w-100 btn-primary pt-2 pb-2 d-block text-uppercase btn-login"
+                            data-bs-dismiss="modal"><strong>Đăng nhập</strong></button>
+                    </div>
+                    <p class="small mb-0 text-center">Nếu bạn chưa có tài khoản <a href="#" target="_blank">liên
+                            hệ</a> để được cấp lại</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN Script Modal -->
+
+    <!-- BEGIN Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header py-2 ps-3 pe-2">
+            <h4 id="offcanvasMenulLabel" class="mb-0">Menu</h4>
+            <button type="button" class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <ul class="nav nav-offcanvas-menu flex-column mt-2 mb-3">
+                <li class="nav-item item-setting-layout">
+                    <a href="setting-layout.html" class="nav-link">Cấu hình Layout</a>
+                </li>
+                <li class="nav-item item-script">
+                    <a href="javascript:;" class="nav-link" data-bs-dismiss="offcanvas">Kịch bản</a>
+                </li>
+                <li class="nav-item item-logout">
+                    <a href="javascript:;" class="nav-link" data-bs-dismiss="offcanvas">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </div> <!-- END Offcanvas -->
+
+    <!-- BEGIN Group Camera Detail -->
+    <div id="groupCameraDetail" class="group-cameras-detail border bg-dark rounded-2 p-3 d-flex flex-column d-none">
+        <div class="d-flex align-items-center">
+            <h6 class="fs-5 fw-bold" id="modalGroupCameraDetailLabel">Ngã tư Nam Kỳ Khởi
+                Nghĩa</h6>
+            <button type="button" class="btn-close ms-auto">&nbsp;</button>
+        </div>
+        <div class="mb-2">
+            <ul class="nav nav-pills mb-2" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link py-1 px-2 rounded-pill active" id="stream-1-tab" data-bs-toggle="pill"
+                        data-bs-target="#stream-1" type="button" role="tab" aria-controls="stream-1"
+                        aria-selected="true">Camera PTZ</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link py-1 px-2 rounded-pill" id="stream-2-tab" data-bs-toggle="pill"
+                        data-bs-target="#stream-2" type="button" role="tab" aria-controls="stream-2"
+                        aria-selected="false">Camera PTZ 2</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link py-1 px-2 rounded-pill" id="stream-3-tab" data-bs-toggle="pill"
+                        data-bs-target="#stream-3" type="button" role="tab" aria-controls="stream-3"
+                        aria-selected="false">
+                        Camera PTZ 3</button>
+                </li>
+            </ul>
+            <!-- BEGIN Content Content -->
+            <div class="tab-content mb-2">
+                <div class="tab-pane fade show active" id="stream-1" role="tabpanel" aria-labelledby="stream-1-tab"
+                    tabindex="0">
+                    <!-- BEGIn Steam Item -->
+                    <div class="stream-item">
+                        <div class="traffic-light-wrapper top">
+                            <div class="traffic-light">
+                                <div class="light-item green">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">20</div>
+                                </div>
+                                <div class="light-item yellow">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">10</div>
+                                </div>
+                                <div class="light-item red active">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-placeholder ratio-16-9">
+                            <div class="bg" style="background-color:#323E50;"></div>
+                            <div class="media-inner d-flex align-items-end">
+                                <div class="p-2 pt-3 w-100 bg-gradient-dark">
+                                    Camera PTZ
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- BEGIn Steam Item -->
+                </div>
+                <div class="tab-pane fade" id="stream-2" role="tabpanel" aria-labelledby="stream-2-tab" tabindex="0">
+                    <!-- BEGIN Steam Item -->
+                    <div class="stream-item">
+                        <div class="traffic-light-wrapper top">
+                            <div class="traffic-light">
+                                <div class="light-item green active">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">20</div>
+                                </div>
+                                <div class="light-item yellow">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">10</div>
+                                </div>
+                                <div class="light-item red">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-placeholder ratio-16-9">
+                            <div class="bg" style="background-color:#323E50;"></div>
+                            <div class="media-inner d-flex align-items-end">
+                                <div class="p-2 pt-3 w-100 bg-gradient-dark">
+                                    Camera PTZ 2
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- END Steam Item -->
+                </div>
+                <div class="tab-pane fade" id="stream-3" role="tabpanel" aria-labelledby="stream-3-tab" tabindex="0">
+                    <!-- END Steam Item -->
+                    <div class="stream-item">
+                        <div class="traffic-light-wrapper top">
+                            <div class="traffic-light">
+                                <div class="light-item green">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">20</div>
+                                </div>
+                                <div class="light-item yellow">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">10</div>
+                                </div>
+                                <div class="light-item red active">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-placeholder ratio-16-9">
+                            <div class="bg" style="background-color:#323E50;"></div>
+                            <div class="media-inner d-flex align-items-end">
+                                <div class="p-2 pt-3 w-100 bg-gradient-dark">
+                                    Camera PTZ 3
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- BEGIN Steam Item -->
+                </div>
+            </div><!-- END Content Content -->
+        </div>
+        <div class="flex-grow-1 d-flex flex-column">
+            <!-- BEGIN Live violation Block -->
+            <h5 class="text-primary text-uppercase mb-2"><span>Vi phạm tại điểm</span></h5>
+            <div class="flex-grow-1 custom-scroll-light" data-overlayscrollbars-initialize>
+                <div class="h-0px">
+                    <ul class="live-violations list-unstyled mb-0">
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm Không đội mũ bảo
+                                    hiểm Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END Live violation Block -->
+        </div>
+    </div>
+    <!-- END Group Camera Detail -->
+
+
+    <!-- BEGIN Panel Script -->
+    <div id="panelScript" class="panel-script d-none">
+        <div class="panel-header d-flex align-items-center p-2">
+            <div class="small text-uppercase flex-grow-1"><i class="fa-solid fa-scroll me-2"></i>Kịch bản</div>
+            <button class="btn-close btn-sm btn-close-white ms-auto"></button>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item item-stolen">
+                <a href="#" class="nav-link">Hiển thị xe mất cắp</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Hiển thị dẫn đường</a>
+            </li>
+            <li class="nav-item item-fire">
+                <a href="#" class="nav-link">Phát hiện đám cháy</a>
+            </li>
+        </ul>
+    </div><!-- BEGIN Panel Script -->
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
+    <script src="node_modules/overlayscrollbars/browser/overlayscrollbars.browser.es6.js"></script>
+    <!-- BEGIN ONLY for this page -->
+    <script src="node_modules/gsap/dist/gsap.min.js"></script>
+    <script src="node_modules/flickity/dist/flickity.pkgd.min.js"></script>
+    <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
+    <script src="node_modules/moment/locale/vi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="node_modules/highcharts/highcharts.js"></script>
+    <script src="node_modules/chart.js/dist/chart.umd.js"></script>
+    <script src="node_modules/highcharts/highcharts-more.js"></script>
+    <script src="node_modules/highcharts/modules/solid-gauge.js"></script>
+    <script src="js/mkCharts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1/build/openseadragon/openseadragon.min.js"></script>
+    <!-- END ONLY for this page -->
+    <script src="js/chart-init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="js/parking-security-dashboard.js?v=1"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        //Modal
+        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        document.querySelector('.item-logout .nav-link').addEventListener('click', (event) => {
+            event.preventDefault();
+            loginModal.show();
+        });
+
+    </script>
+</body>
+
+</html>

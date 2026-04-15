@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đồng Hồ An Toàn</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0d1f3c;
+        }
+
+        .gauge-wrap {
+            background: #1b396b;
+            border-radius: 20px;
+            padding: 32px 44px 28px;
+            width: 340px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .gauge-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #00e5ff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            align-self: flex-start;
+            margin-bottom: 20px;
+        }
+
+        #gval {
+            font-size: 38px;
+            font-weight: 700;
+            color: #fff;
+            margin-top: -6px;
+            letter-spacing: 1px;
+        }
+
+        .gauge-meta {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gauge-wrap">
+
+        <div class="gauge-title">
+            <svg width="18" height="14" viewBox="0 0 18 14">
+                <polygon points="0,0 8,7 0,14" fill="#00e5ff" />
+                <polygon points="8,0 16,7 8,14" fill="#00e5ff" />
+            </svg>
+            ĐIỂM SỐ AN TOÀN
+        </div>
+
+        <canvas id="gc" width="280" height="165"></canvas>
+
+        <div id="gval">0.0</div>
+
+        <div class="gauge-meta">
+            <span style="color:#aac4f0">Trạng thái</span>
+            <span id="gstat" style="color:#7fff00;font-weight:600">An toàn</span>
+        </div>
+
+    </div>
+
+    <script>
+        (function () {
+            const canvas = document.getElementById('gc');
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width, H = canvas.height;
+            const cx = W / 2, cy = H - 28;
+            const R = 108, trackW = 22;
+            const START_ANG = Math.PI, END_ANG = 2 * Math.PI;
+            const BG = '#1b396b';
+
+            /* ── Giá trị đích — đổi số này để thay điểm hiển thị ── */
+            const TARGET = 8;
+
+            const statuses = [
+                { max: 2, label: 'Nguy hiểm', color: '#ff4400' },
+                { max: 4, label: 'Cảnh báo', color: '#ff9900' },
+                { max: 6, label: 'An toàn', color: '#7fff00' },
+                { max: 8, label: 'An toàn, Tốt', color: '#44dd88' },
+                { max: 10, label: 'An toàn, Xuất sắc', color: '#00ffcc' }
+            ];
+
+            /* Chuyển giá trị 0-10 thành góc radian */
+            function valToAng(v) {
+                return START_ANG + (v / 10) * (END_ANG - START_ANG);
+            }
+
+            /* Lấy màu RGB tại vị trí val trên cung */
+            function colorAtVal(v) {
+                const stops = [
+                    [0, [255, 51, 0]],
+                    [3, [255, 136, 0]],
+                    [6, [170, 238, 0]],
+                    [8.5, [51, 204, 85]],
+                    [10, [26, 58, 42]]
+                ];
+                for (let i = 0; i < stops.length - 1; i++) {
+                    const [v0, c0] = stops[i];
+                    const [v1, c1] = stops[i + 1];
+                    if (v >= v0 && v <= v1) {
+                        const t = (v - v0) / (v1 - v0);
+                        return [
+                            Math.round(c0[0] + (c1[0] - c0[0]) * t),
+                            Math.round(c0[1] + (c1[1] - c0[1]) * t),
+                            Math.round(c0[2] + (c1[2] - c0[2]) * t)
+                        ];
+                    }
+                }
+                return stops[stops.length - 1][1];
+            }
+
+            /* Vẽ toàn bộ gauge tại giá trị val */
+            function draw(val) {
+                ctx.clearRect(0, 0, W, H);
+
+                /* Track nền mờ */
+                ctx.beginPath();
+                ctx.arc(cx, cy, R, START_ANG, END_ANG);
+                ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+                ctx.lineWidth = trackW;
+                ctx.lineCap = 'butt';
+                ctx.stroke();
+
+                /* Cung màu — tô từng đoạn nhỏ để tạo gradient liên tục */
+                if (val > 0) {
+                    const segCount = 120;
+                    const totalAng = END_ANG - START_ANG;
+                    const valFrac = val / 10;
+                    const fillEnd = valToAng(val);
+
+                    for (let i = 0; i < segCount; i++) {
+                        const frac = i / segCount;
+                        if (frac > valFrac) break;
+                        const a0 = START_ANG + frac * totalAng;
+                        const a1 = START_ANG + ((i + 1) / segCount) * totalAng;
+                        const [r, g, b] = colorAtVal(frac * 10);
+                        ctx.beginPath();
+                        ctx.arc(cx, cy, R, a0, Math.min(a1, fillEnd));
+                        ctx.strokeStyle = `rgb(${r},${g},${b})`;
+                        ctx.lineWidth = trackW;
+                        ctx.lineCap = 'butt';
+                        ctx.stroke();
+                    }
+                }
+
+                /* Kim hình mũi tên */
+                const ang = valToAng(val);
+                const needleLen = R - 14;
+                const tailLen = 16;
+                const tipX = cx + needleLen * Math.cos(ang);
+                const tipY = cy + needleLen * Math.sin(ang);
+                const tailX = cx - tailLen * Math.cos(ang);
+                const tailY = cy - tailLen * Math.sin(ang);
+                const px = Math.cos(ang + Math.PI / 2);
+                const py = Math.sin(ang + Math.PI / 2);
+
+                ctx.beginPath();
+                ctx.moveTo(tipX, tipY);
+                ctx.lineTo(cx + px * 7, cy + py * 7);
+                ctx.lineTo(tailX + px * 2.5, tailY + py * 2.5);
+                ctx.lineTo(tailX - px * 2.5, tailY - py * 2.5);
+                ctx.lineTo(cx - px * 7, cy - py * 7);
+                ctx.closePath();
+                ctx.fillStyle = '#00e5ff';
+                ctx.fill();
+
+                /* Chốt giữa */
+                ctx.beginPath();
+                ctx.arc(cx, cy, 9, 0, 2 * Math.PI);
+                ctx.fillStyle = '#00e5ff';
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
+                ctx.fillStyle = BG;
+                ctx.fill();
+
+                /* Nhãn 0 / 10 */
+                ctx.fillStyle = 'rgba(170,196,240,0.8)';
+                ctx.font = '11px Arial';
+                ctx.textAlign = 'right';
+                ctx.fillText('0', cx - R + 2, cy + 16);
+                ctx.textAlign = 'left';
+                ctx.fillText('10', cx + R - 2, cy + 16);
+
+                /* Cập nhật số và trạng thái */
+                document.getElementById('gval').textContent = val.toFixed(1);
+                const st = statuses.find(s => val <= s.max) || statuses[4];
+                const el = document.getElementById('gstat');
+                el.textContent = st.label;
+                el.style.color = st.color;
+            }
+
+            /* Easing */
+            function easeInOut(t) {
+                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            }
+
+            /* Animation: 0 → 10 (boot sweep) → TARGET (settle) */
+            let startTime = null;
+            const bootDuration = 900;
+            const settleDuration = 600;
+            let bootDone = false;
+            let settleStart = null;
+
+            function animate(ts) {
+                if (!startTime) startTime = ts;
+                const elapsed = ts - startTime;
+
+                if (!bootDone) {
+                    const t = Math.min(elapsed / bootDuration, 1);
+                    draw(easeInOut(t) * 10);
+                    if (t >= 1) { bootDone = true; settleStart = ts; }
+                } else {
+                    const t2 = Math.min((ts - settleStart) / settleDuration, 1);
+                    draw(10 + (TARGET - 10) * easeInOut(t2));
+                    if (t2 >= 1) { draw(TARGET); return; }
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            requestAnimationFrame(animate);
+        })();
+    </script>
+
+</body>
+
+</html>

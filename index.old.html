@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Monitoring v23</title>
+    <!-- BEGIN Includes Styles  -->
+    <link rel="stylesheet" href="css/fa.min.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+    <link rel="stylesheet" href="node_modules/overlayscrollbars/styles/overlayscrollbars.min.css">
+    <link rel="stylesheet" href="node_modules/flickity/dist/flickity.min.css">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='node_modules/@mapbox/mapbox-gl-traffic/mapbox-gl-traffic.css' rel='stylesheet' />
+    <script src='js/mapboxgl-control-minimap.js'></script>
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- END Includes Styles  -->
+
+</head>
+
+<body>
+    <!-- BEGIN Components Preload -->
+    <div class="d-none">
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="1" data-name="Thông tin giao thông">
+            <ul class="nav stats-nav">
+                <li class="nav-item item-traffic-flow">
+                    <div class="icon text-primary me-2">
+                        <i class="fa-regular fa-road"></i>
+                    </div>
+                    <div class="me-2">
+                        <div class="lh-sm small">Tuyến đường</div>
+                        <div class="lh-sm text-primary">Thông thoáng</div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <div class="chart-content">
+                            02
+                        </div>
+                        <div class="mkCharts" data-color="#00EAFF" data-percent="60" data-size="2rem" data-stroke="2">
+                            &nbsp;
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item item-security">
+                    <div class="icon text-primary me-2">
+                        <i class="fa-regular fa-shield"></i>
+                    </div>
+                    <div class="lh-sm small me-3">An ninh<br>khu vực</div>
+                    <div>
+                        <div class="text-center lh-1 text-primary">Tốt</div>
+                        <div class="text-center lh-1">
+                            <span class="span_signal bg-primary"></span>
+                            <span class="span_signal bg-primary"></span>
+                            <span class="span_signal bg-primary"></span>
+                            <span class="span_signal bg-primary"></span>
+                            <span class="span_signal bg-primary"></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item item-air">
+                    <div class="icon text-primary me-2">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <div class="lh-sm small me-2">Chât lượng<br>không khí</div>
+                    <div class="me-2">
+                        <div
+                            class="w-32px h-32px border rounded-circle d-flex justify-content-center align-items-center text-primary">
+                            68
+                        </div>
+                    </div>
+                    <div>
+                        <div class="lh-sm text-primary text-center">Trung bình</div>
+                        <div class="small text-center">PM2.5 | 20.3 µg/m³ </div>
+                    </div>
+                </li>
+            </ul>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="2" data-name="Thông tin thời tiết">
+            <ul class="nav weather-nav">
+                <li class="nav-item item-weather has-icon">
+                    <img src="img/03n.png" class="icon" id="weather_image" alt="">
+                    <div>
+                        <div class="lh-sm text-primary text-capitalize mb-0"><span id="weather_description">Nắng</span>
+                        </div>
+                        <div class="lh-sm small opacity-75">Thời tiết</div>
+                    </div>
+                </li>
+                <li class="nav-item item-temperature has-icon">
+                    <i class="icon fa-regular fa-temperature-three-quarters text-primary"></i>
+                    <div>
+                        <div class="lh-sm text-primary mb-0"><span class="cc" id="weather_temp">31</span><sup>o</sup>C
+                        </div>
+                        <div class="lh-sm small opacity-75">Nhiệt độ</div>
+                    </div>
+                </li>
+                <li class="nav-item item-humidity has-icon">
+                    <i class="icon fa-regular fa-droplet text-primary"></i>
+                    <div>
+                        <div class="lh-sm text-primary mb-0"><span class="cc" id="weather_humidity">70</span>%</div>
+                        <div class="lh-sm small opacity-75">Độ ẩm</div>
+                    </div>
+                </li>
+            </ul>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="3" data-name="Đồng hồ">
+            <div class="clock">
+                <div class="text-end lh-sm text-primary mb-0 clock-time"><span id="time">16:04:05</span></div>
+                <div class="text-end lh-sm small opacity-50 clock-date"><span class="display-day text-capitalize"
+                        id="day">Thứ 6</span>,
+                    <span class="display-date" id="date">17 - 2 - 2021</span>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="4" data-name="Thông tin sự cố">
+            <div class="card card-events-monitoring mb-0">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title text-uppercase fw-bold text-primary mb-0"><i
+                            class="icon fa-regular fa-info-circle text-gradient me-2"></i> Sự cố hôm nay</h5>
+                    <div class="small opacity-50"><i class="fa-regular fa-clock"></i> 16:00:00</div>
+                </div>
+                <div class="card-body py-0">
+                    <div class="stats-event">
+                        <div class="row">
+                            <div class="col-6">
+                                <!-- BEGIN Item -->
+                                <div class="item-event-stats traffic high d-flex">
+                                    <div class="icon">
+                                        <div class="inner">
+                                            <i class="fa-regular fa-car-crash"></i>
+                                        </div>
+                                        <div class="animation-bg-1">&nbsp;</div>
+                                        <div class="animation-bg-2">&nbsp;</div>
+                                    </div>
+                                    <div class="item-content text-center flex-grow-1">
+                                        <div class="small lh-sm opacity-50">Giao Thông</div>
+                                        <h4 class="lh-1 mb-0">123</h4>
+                                        <hr class="my-1">
+                                        <div class="small"><span class="text-success">-54.00%</span></div>
+                                    </div>
+                                </div>
+                                <!-- BEGIN Item -->
+                            </div>
+                            <div class="col-6">
+                                <!-- BEGIN Item -->
+                                <div class="item-event-stats security normal d-flex">
+                                    <div class="icon">
+                                        <div class="inner">
+                                            <i class="fa-regular fa-user-alien"></i>
+                                        </div>
+                                        <div class="animation-bg-1">&nbsp;</div>
+                                        <div class="animation-bg-2">&nbsp;</div>
+                                    </div>
+                                    <div class="item-content text-center flex-grow-1">
+                                        <div class="small lh-sm opacity-50">An ninh</div>
+                                        <h4 class="lh-1 mb-0">25</h4>
+                                        <hr class="my-1">
+                                        <div class="small"><span class="text-danger">+5.60%</span></div>
+                                    </div>
+                                </div>
+                                <!-- BEGIN Item -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-event">
+                        <h6 class="mb-2 text-uppercase opacity-50">Mới diễn ra</h6>
+                        <!-- BEGN List Recent Event -->
+                        <ul class="list-recent-event list-unstyled mb-0">
+                            <!-- BEGIN Item Event -->
+                            <li class="item-event">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-image: url(img/temp/danhnhau.jpg);"></div>
+                                    <div class="media-inner d-flex align-items-end">
+                                        <div class="w-100 bg-dark py-1 px-2 overflow-hidden">
+                                            <span class="small text-truncate">Đánh nhau</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-meta text-center">
+                                    <div class="type traffic"><span class="icon">&nbsp;</span></div>
+                                    <div class="small opacity-50 text-truncate time">12:22</div>
+                                </div>
+                            </li>
+                            <!-- END Item Event -->
+                            <!-- BEGIN Item Event -->
+                            <li class="item-event">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-image: url(img/temp/tu_tap_dongnguoi.jpg);"></div>
+                                    <div class="media-inner d-flex align-items-end">
+                                        <div class="w-100 bg-dark py-1 px-2 overflow-hidden">
+                                            <span class="small text-truncate">Tụ tập đông người</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-meta text-center">
+                                    <div class="type other"><span class="icon">&nbsp;</span></div>
+                                    <div class="small opacity-50 text-truncate time">11:23</div>
+                                </div>
+                            </li>
+                            <!-- END Item Event -->
+                            <!-- BEGIN Item Event -->
+                            <li class="item-event">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg"
+                                        style="background-image: url(img/temp/2_1_0_67A11051_1641350621.9715743_22412_1.jpg);">
+                                    </div>
+                                    <div class="media-inner d-flex align-items-end">
+                                        <div class="w-100 bg-dark py-1 px-2 overflow-hidden">
+                                            <span class="small text-truncate">Va chạm giao thông</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-meta text-center">
+                                    <div class="type security"><span class="icon">&nbsp;</span></div>
+                                    <div class="small opacity-50 text-truncate time">10:58</div>
+                                </div>
+                            </li>
+                            <!-- END Item Event -->
+                            <!-- BEGIN Item Event -->
+                            <li class="item-event">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg"
+                                        style="background-image: url(img/temp/2_1_71A07741_1606291085.9127822_67738_thumb.jpg);">
+                                    </div>
+                                    <div class="media-inner d-flex align-items-end">
+                                        <div class="w-100 bg-dark py-1 px-2 overflow-hidden">
+                                            <span class="small text-truncate">Va chạm giao thông</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-meta text-center">
+                                    <div class="type traffic"><span class="icon">&nbsp;</span></div>
+                                    <div class="small opacity-50 text-truncate time">10:47</div>
+                                </div>
+                            </li>
+                            <!-- END Item Event -->
+                            <!-- BEGIN Item Event -->
+                            <li class="item-event">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg"
+                                        style="background-image: url(img/temp/2_4_3__1641350055.5688608_17308_1.jpg);">
+                                    </div>
+                                    <div class="media-inner d-flex align-items-end">
+                                        <div class="w-100 bg-dark py-1 px-2 overflow-hidden">
+                                            <span class="small text-truncate">Chưa xác định</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-meta text-center">
+                                    <div class="type"><span class="icon">&nbsp;</span></div>
+                                    <div class="small opacity-50 text-truncate time">Chưa xác định</div>
+                                </div>
+                            </li>
+                            <!-- END Item Event -->
+                            <!-- BEGIN Item Event -->
+                            <li class="item-event">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg"
+                                        style="background-image: url(img/temp/3_1_3_67K133412_1606274202_1.png);">
+                                    </div>
+                                    <div class="media-inner d-flex align-items-end">
+                                        <div class="w-100 bg-dark py-1 px-2 overflow-hidden">
+                                            <span class="small text-truncate">Va chạm giao thông</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-meta text-center">
+                                    <div class="type traffic"><span class="icon">&nbsp;</span></div>
+                                    <div class="small opacity-50 text-truncate time">09:22</div>
+                                </div>
+                            </li>
+                            <!-- END Item Event -->
+                        </ul>
+                        <!-- END List Recent Event -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="5" data-name="Hệ thống nhận diện">
+            <div class="card mb-0">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title text-uppercase fw-bold text-primary mb-0">
+                        <i class="fa-solid fa-user-secret me-2"></i>Hệ thống nhận diện
+                    </h5>
+                    <div class="small opacity-50"><i class="fa-regular fa-clock"></i> 16:00:00</div>
+                </div>
+                <div class="card-body py-0">
+                    <div class="d-flex align-items-stretch mb-1">
+                        <div class="flex-grow-1 border-end">
+                            <div class="text-center p-2">
+                                <h4 class="text-primary lh-1 mb-0">14</h4>
+                                <div class="small lh-sm opacity-50">Nhận diện khuôn mặt</div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 border-end">
+                            <div class="text-center p-2">
+                                <h4 class="text-primary lh-1 mb-0">12.345</h4>
+                                <div class="small lh-sm opacity-50">Nhận diện phương tiện</div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="text-center p-2">
+                                <h4 class="text-primary lh-1 mb-0">23</h4>
+                                <div class="small lh-sm opacity-50">Nhận diện sự việc</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 me-2">
+                            <div class="radar mt-2">
+                                <div class="media-placeholder">
+                                    <div class="dot warning animate__animated animate__flash animate__slow animate__infinite"
+                                        style="left: 20%;top: 25%;"></div>
+                                    <div class="dot danger animate__animated animate__flash animate__fast animate__infinite"
+                                        style="left: 80%;top: 50%;"></div>
+                                    <div class="dot warning animate__animated animate__flash animate__slow animate__infinite"
+                                        style="left: 24%;top: 84%;"></div>
+                                    <div class="dot success animate__animated animate__flash animate__slower animate__infinite"
+                                        style="left: 60%;top: 73%;"></div>
+                                    <div class="bg"></div>
+                                    <div class="inner">
+                                        <div class="inner">
+                                            <div class="inner"></div>
+                                        </div>
+                                        <div class="beam"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <!-- BEGIN Security Block -->
+                            <div class="security-block">
+                                <div class="block-content d-flex">
+                                    <div class="block-list table-responsive flex-grow-1">
+                                        <div class="px-3">
+                                            <div class="row g-2 border-bottom pb-2 mb-2">
+                                                <div class="col-2">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-2 border-bottom pb-2 mb-2">
+                                                <div class="col-2">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-2 border-bottom pb-2 mb-2">
+                                                <div class="col-2">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-2 border-bottom pb-2 mb-2">
+                                                <div class="col-2">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-2 border-bottom pb-2 mb-2">
+                                                <div class="col-2">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-2 mb-2">
+                                                <div class="col-2">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="placeholder-block" style="height: 1rem;">
+                                                        <div class="animated-el"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="block-preview px-2">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="placeholder-block mb-1" style="height: 0.5rem;">
+                                                    <div class="animated-el"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 ms-auto">
+                                                <div class="placeholder-block mb-1" style="height: 0.5rem;">
+                                                    <div class="animated-el"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="media-placeholder placeholder-block mb-1">
+                                            <div class="animated-el"></div>
+                                        </div>
+                                        <div class="placeholder-block" style="height: 0.5rem;width: 90%;">
+                                            <div class="animated-el"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END List Block -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="6" data-name="Bản đồ - Thống kê bản đồ">
+            <div class="maker-stats-block">
+                <div class="mb-1 text-uppercase">Thống kê bản đồ</div>
+                <div class="item d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <div class="small opacity-50">Cụm Camera</div>
+                        <div class="text-primary lh-1"><span id="groupcamera_in_view">-</span>/ 44
+                        </div>
+                    </div>
+                    <i class="icon fa-regular fa-camera-cctv"></i>
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <div class="small opacity-50">Chốt CSGT</div>
+                        <div class="text-primary lh-1"><span id="police_in_view">-</span>/ 12</div>
+                    </div>
+                    <i class="icon fa-solid fa-police-box"></i>
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <div class="small opacity-50">Trạm phát sóng</div>
+                        <div class="text-primary lh-1"><span id="broadcast_in_view">-</span>/ 12
+                        </div>
+                    </div>
+                    <i class="icon fa-regular fa-tower-broadcast"></i>
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                        <div class="small opacity-50">Cảm biến</div>
+                        <div class="text-primary lh-1">-</div>
+                    </div>
+                    <i class="icon fa-regular fa-microchip"></i>
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-2">
+                    <div>
+                        <div class="small opacity-50">Camera ANXH</div>
+                        <div class="text-primary lh-1"><span id="security_camera_in_view"
+                                class="text-danger">-</span>/10</div>
+                    </div>
+                    <i class="icon fa-regular fa-camera-security"></i>
+                </div>
+                <div class="item d-flex align-items-center justify-content-between mb-2">
+                    <div>
+                        <div class="small opacity-50">Loa Phóng thanh</div>
+                        <div class="text-primary lh-1"><span id="loudspeaker_in_view">-</span>/3
+                        </div>
+                    </div>
+                    <i class="icon fa-regular fa-bullhorn"></i>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="7" data-name="Bản đồ - Sự cố sự kiện">
+            <div class="d-flex">
+                <div class="map-hot-events mb-2 text-center me-2 d-none" style="min-width: 10rem;">
+                    <div class="text-uppercase lh-1">Sự kiến nóng</div>
+                    <div class="small opacity-50"><i class="fa-solid fa-angle-down"></i></div>
+                    <div class="event-popup popup-security mb-2">
+                        <div class="popup-inner">
+                            <div class="popup-header">
+                                <span class="small count-down">Đóng sau <span class="number"
+                                        data-time="60">60</span>s</span>
+                            </div>
+                            <div class="popup-body">
+                                <div class="media-placeholder ratio-16-9">
+                                    <div class="bg" style="background-color: #323E50;"></div>
+                                    <div class="media-inner d-flex justify-content-center align-items-center">
+                                        <a href="#"><i class="bi bi-play fs-5"></i></a>
+                                    </div>
+                                </div>
+                                <div class="event-info">
+                                    <div class="lh-sm">Phát hiện đánh nhau</div>
+                                    <div class="small opacity-50">Ngã tư...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event-popup popup-traffic">
+                        <div class="popup-inner">
+                            <div class="popup-header">
+                                <span class="small count-down">Đóng sau <span class="number"
+                                        data-time="60">60</span>s</span>
+                            </div>
+                            <div class="popup-body">
+                                <div class="media-placeholder ratio-16-9">
+                                    <div class="bg" style="background-color: #323E50;"></div>
+                                    <div class="media-inner d-flex justify-content-center align-items-center">
+                                        <a href="#"><i class="bi bi-play fs-5"></i></a>
+                                    </div>
+                                </div>
+                                <div class="event-info">
+                                    <div class="lh-sm">Phát hiện tai nạn giao thông</div>
+                                    <div class="small opacity-50">Ngã tư...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2 text-center">
+                    <div class="text-uppercase lh-1">Sự kiện</div>
+                    <div class="small opacity-50"><i class="fa-solid fa-angle-down"></i></div>
+                    <div class="media-placeholder mb-2">
+                        <div class="mkCharts" data-color="#00EAFF" data-percent="40" data-size="4.5rem" data-stroke="1">
+                            &nbsp;</div>
+                        <div class="media-inner d-flex justify-content-center align-items-center">
+                            <div>
+                                <div class="fs-4 lh-1 text-primary">03</div>
+                                <div class="small opacity-50">Sự kiện</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-placeholder mb-2">
+                        <div class="mkCharts" data-color="#EB5757" data-percent="80" data-size="4.5rem" data-stroke="1">
+                            &nbsp;</div>
+                        <div class="media-inner d-flex justify-content-center align-items-center">
+                            <div>
+                                <div class="fs-4 lh-1 text-danger">01</div>
+                                <div class="small opacity-50">An ninh</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="8" data-name="Bản đồ - Mini Map">
+            <div class="mb-4">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="traffic_map">
+                    <label class="form-check-label opacity-75" for="traffic_map">Hiển thị tắc đường</label>
+                </div>
+            </div>
+            <div class="mini-map-block d-flex align-items-end">
+                <div class="mini-map">
+                    <div class="mini-map-top">&nbsp;</div>
+                    <div class="media-placeholder">
+                        <div class="bg" style="background-color: #000;"></div>
+                    </div>
+                </div>
+                <div class="btn-group-vertical ms-2" role="group">
+                    <button id="back_to_center" type="button" class="btn btn-sm btn-outline-secondary">
+                        <i class="fa-solid fa-location-arrow"></i>
+                    </button>
+                    <button id="zoom_in" type="button" class="btn btn-sm btn-outline-secondary">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button id="zoom_out" type="button" class="btn btn-sm btn-outline-secondary">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="9" data-name="Bản đồ - Trạng thái sự kiện">
+            <div class="notication-block d-flex flex-column align-items-end mb-2">
+                <div class="notication-item d-flex align-items-center text-end mb-2">
+                    <div class="lh-sm">
+                        <div class="small opacity-50">Cháy nổ</div>
+                        <div>Xe cứu hỏa đang tới địa điểm</div>
+                    </div>
+                    <div class="fs-5 ms-2"><i class="icon fa-regular fa-truck"></i></div>
+                </div>
+                <div class="notication-item d-flex align-items-center text-end mb-2">
+                    <div class="lh-sm">
+                        <div class="small opacity-50">Dẫn đoàn</div>
+                        <div>Đang trong hành trình</div>
+                    </div>
+                    <div class="fs-5 ms-2"><i class="icon fa-regular fa-truck-field"></i></div>
+                </div>
+                <div class="notication-item d-flex align-items-center text-end mb-2">
+                    <div class="lh-sm">
+                        <div class="small opacity-50">Tai nạn giao thông</div>
+                        <div>Xe cứu thương đang tới địa điểm</div>
+                    </div>
+                    <div class="fs-4 ms-2"><i class="icon fa-regular fa-truck-medical"></i></div>
+                </div>
+                <div class="text-end opacity-50">Đang diễn ra <i class="fa-regular fa-chevron-up"></i>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item width2x" data-id="10" data-name="Thống kê - Lưu lượng giao thông">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0 me-3">Lưu lượng
+                        giao thông</h5>
+                    <div class="small opacity-50"><i class="fa-regular fa-clock"></i> 16:00:00</div>
+                </div>
+                <div class="card-body py-0">
+                    <div class="chart-traffic-block d-flex flex-wrap">
+                        <div class="col-traffic-jam flex-shrink-0">
+                            <div class="chart-trafficjam-wrapper">
+                                <div id="chartTrafficJam" class="chart-pie"></div>
+                            </div>
+                            <div class="text-center">Tỉ lệ tắc đường</div>
+                            <div class="text-center text-secondary small text-truncate"><span class="mx-1"><span
+                                        class="dot bg-success me-1"></span>Thoáng</span><span class="mx-1"><span
+                                        class="dot bg-warning me-1"></span>Đông</span><span class="mx-1"><span
+                                        class="dot bg-danger me-1"></span>Tắc đường
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-traffic-flow flex-grow-1">
+                            <div class="chart-trafficflow-wrapper">
+                                <div class="bg-clight position-absolute py-0 px-3 rounded-pill"
+                                    style="left: 3rem; top: 0;z-index: 999;">Lưu lượng qua điểm</div>
+                                <div id="chartTrafficFlow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="11" data-name="Thống kê - Vi phạm giao thông">
+            <div class="card stats-traffic-violation">
+                <div class="card-header">
+                    <h5 class="card-title t-arrow text-uppercase fw-bold text-primary mb-0">Vi phạm
+                        giao thông</h5>
+                </div>
+                <div class="card-body py-0">
+                    <div class="stats-traffic-violation-block">
+                        <div class="block-header">
+                            <div class="updated-time small opacity-50"><i class="fa-regular fa-clock"></i> 16:00:00
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <div>
+                                    <div class="small opacity-50">Hôm nay</div>
+                                    <div class="fs-3 lh-1">12.345</div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <div class="chart-stats-violation good">
+                                        <div class="value">35</div>
+                                        <div class="small meta">%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-1">
+                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                <div class="flex-grow-1 me-2">
+                                    <div class="small opacity-50">Loại vi phạm nhiều</div>
+                                    <div class="lh-1">Đi không đúng phần/làn/chiều đường quy định</div>
+                                </div>
+                                <div class="d-flex align-items-center flex-shrink-0">
+                                    <div class="small me-1 opacity-75">44.1%</div>
+                                    <div class="mkCharts" data-color="rgb(45,156,219)" data-percent="44"
+                                        data-size="1.75rem" data-stroke="2">&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="flex-grow-1 me-2">
+                                    <div class="small opacity-50">Phương tiện vi phạm nhiều</div>
+                                    <div class="lh-1">Xe gắn máy</div>
+                                </div>
+                                <div class="d-flex align-items-center flex-shrink-0">
+                                    <div class="small me-1 opacity-75">79.3%</div>
+                                    <div class="mkCharts" data-color="rgb(45,156,219)" data-percent="79"
+                                        data-size="1.75rem" data-stroke="2">&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="12" data-name="Thống kê - Vi phạm theo phương tiện">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title badge-inline mb-0">
+                        <i class="fa-sharp fa-solid fa-chevron-down opacity-50 me-1"></i>
+                        Theo phương tiện
+                    </h5>
+                </div>
+                <div class="card-body py-2">
+                    <div class="list-chart-bar">
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-regular fa-motorcycle"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Xe máy</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 100%;"><span class="value">134</span></div>
+                                    <span class="change up">+0,33</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-regular fa-car-side"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Ô tô, xe 7 chỗ</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 51%;"><span class="value">69</span></div>
+                                    <span class="change up">+1,78</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-regular fa-truck"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Xe tải</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 85%;"><span class="value">110</span></div>
+                                    <span class="change down">-2,09</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-regular fa-bicycle"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Xe đạp</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 64%;"><span class="value">87</span></div>
+                                    <span class="change down">-1,15</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-regular fa-person-walking"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Người đi bộ</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 22%;"><span class="value">30</span></div>
+                                    <span class="change up">+1,78</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="13" data-name="Thống kê - Vi phạm theo thẻ loại">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title badge-inline mb-0">
+                        <i class="fa-sharp fa-solid fa-chevron-down opacity-50 me-1"></i>
+                        Thể loại vi phạm
+                    </h5>
+                </div>
+                <div class="card-body py-2">
+                    <div class="list-chart-bar green">
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-regular fa-road-barrier"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Đi không đúng phần/làn/chiều<br>đường quy
+                                    định</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 100%;"><span class="value">134</span></div>
+                                    <span class="change up">+0,33</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-solid fa-helmet-safety"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 51%;"><span class="value">69</span></div>
+                                    <span class="change up">+1,78</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-regular fa-traffic-light"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Vượt đèn đỏ</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 85%;"><span class="value">110</span></div>
+                                    <span class="change down">-2,09</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-solid fa-traffic-cone"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Chở quá số người quy định</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 64%;"><span class="value">87</span></div>
+                                    <span class="change down">-1,15</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                        <!-- BEGIN Item -->
+                        <div class="item">
+                            <div class="icon"><i class="fa-regular fa-do-not-enter"></i></div>
+                            <div class="item-content">
+                                <div class="item-title">Đi ngược chiều</div>
+                                <div class="item-p-bar">
+                                    <div class="track" style="width: 22%;"><span class="value">30</span></div>
+                                    <span class="change up">+1,78</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Item -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- END Item -->
+        <!-- BEGIN Item -->
+        <div class="component-item" data-id="14" data-name="Bản đồ - Đối tượng">
+            <ul class="list-map-object list-unstyled d-flex justify-content-center align-items-center flex-wrap">
+                <li class="item item-group-cameras mt-2" data-type="groupcameras"><i
+                        class="icon fa-regular fa-camera-cctv"></i> <span>Cụm camera</span></li>
+                <li class="item item-camera-security mt-2" data-type="securitycamera"><i
+                        class="icon fa-regular fa-camera-security"></i>
+                    <span>Camera XHH</span>
+                </li>
+                <li class="item item-police mt-2" data-type="police"><i class="icon fa-regular fa-police-box"></i>
+                    <span>Cảnh sát GT</span>
+                </li>
+                <li class="item item-hospital mt-2" data-type="hospital"><i
+                        class="icon fa-regular fa-hospital-symbol"></i>
+                    <span>Bệnh viện</span>
+                </li>
+                <li class="item item-fire-station mt-2" data-type="firestation"><i
+                        class="icon fa-regular fa-hard-hat"></i>
+                    <span>Cứu hỏa</span>
+                </li>
+                <li class="item item-environment-station mt-2" data-type="environmentstation"><i
+                        class="icon fa-regular fa-air-conditioner"></i> <span>Trạm môi trường</span></li>
+                <li class="item item-broadcast mt-2" data-type="broadcast"><i
+                        class="icon fa-regular fa-tower-broadcast"></i>
+                    <span>Trạm phát sóng</span>
+                </li>
+            </ul>
+        </div><!-- END Item -->
+    </div><!-- END Components Preload -->
+    <!-- BEGIN App -->
+    <div class="app">
+        <!-- BEGIN Site Header -->
+        <div class="app-header">
+            <div class="header-inner">
+                <!-- BEGIN Header Start -->
+                <div class="header-start">
+                    <div class="site-brand">
+                        <p class="site-sologan lh-sm text-uppercase small opacity-50 mb-0">Trung tâm điều hành</p>
+                        <h1 class="site-title lh-sm text-uppercase text-primary mb-0">
+                            Giao thông
+                        </h1>
+                    </div>
+                </div><!-- BEGIN Header Start -->
+                <!-- BEGIN Header Center -->
+                <div class="header-center component-container" data-name="header_center">
+                    <div class="label">Header trên trái</div>
+                    <!-- Component Placeholder 1 -->
+                </div><!-- END Header Center -->
+                <!-- BEGIN Header End -->
+                <div class="header-end component-container" data-name="header_end">
+                    <div class="label">Header trên phải</div>
+                    <!-- Component Placeholder 2,3 -->
+
+                </div><!-- END Header End -->
+                <div class="header-end ms-2">
+                    <!-- BEGIN Btn Fullscreen -->
+                    <button id="btn-fullscreen" class="btn btn-32 rounded-circle btn-light btn-fullscreen ms-1">
+                        <i class="icon fa-regular fa-up-right-and-down-left-from-center text-white"></i>
+                    </button>
+                    <!-- END Btn Fullscreen -->
+                    <!-- BEGIN Btn Menu -->
+                    <button class="btn btn-32 rounded-circle btn-light btn-menu ms-1" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"><i
+                            class="icon fa-regular fa-bars text-white"></i></button>
+                    <!-- END Btn Menu -->
+                </div>
+            </div>
+            <div class="line">
+                <div class="span_left">
+                    <span class="opacity-50 me-2">&nbsp;</span><span class="opacity-25">&nbsp;</span>
+                </div>
+                <div class="span_right">
+                    <span class="opacity-25">&nbsp;</span><span class="opacity-50 ms-2">&nbsp;</span>
+                </div>
+            </div>
+        </div><!-- END Site Header -->
+        <!-- BEGIN app Main -->
+        <div class="app-main">
+            <div class="main-content">
+                <!-- BEGIN Main Map -->
+                <div class="content-map">
+                    <div class="map-wrapper">
+                        <div id="map" class="w-100 h-100"></div>
+                        <!-- BEGIN Shadow -->
+                        <div class="top">&nbsp;</div>
+                        <div class="bottom">&nbsp;</div>
+                        <div class="left">&nbsp;</div>
+                        <div class="right">&nbsp;</div>
+                        <!-- END Shadow -->
+                    </div>
+                    <div class="map-top-left">
+                        <div class="p-2 component-container" data-name="map_top_left">
+                            <div class="label">Map Top Left</div>
+                            <!-- Component Placeholder 6 -->
+                        </div>
+                    </div>
+                    <div class="map-top-right">
+                        <div class="p-2 component-container" data-name="map_top_right">
+                            <div class="label">Map Top Right</div>
+                            <!-- Component Placeholder 7 -->
+                        </div>
+                    </div>
+                    <div class="map-bottom-left">
+                        <div class="p-2 component-container" data-name="map_bottom_left">
+                            <div class="label">Map Bottom left</div>
+                            <!-- Component Placeholder 8 -->
+                        </div>
+                    </div>
+                    <div class="map-bottom-center">
+                        <!-- BEGIN content Footer -->
+                        <div class="content-footer component-container" data-name="content_footer">
+                            <div class="label">Content Footer</div>
+                        </div><!-- END content Footer -->
+                    </div>
+                    <div class="map-bottom-right">
+                        <div class="p-2 component-container" data-name="map_bottom_right">
+                            <div class="label">Map Bottom Right</div>
+                            <!-- Component Placeholder 9 -->
+                        </div>
+                    </div>
+                </div><!-- END Main Map -->
+            </div>
+            <!-- BEGIN Main Sidebar -->
+            <div class="main-sidebar custom-scroll-light" data-overlayscrollbars-initialize>
+                <!-- Component Placeholder 4,5 -->
+                <div class="h-0px">
+                    <div class="p-2 component-container" data-name="main_sidebar">
+                        <div class="label">Main Sidebar</div>
+                    </div>
+                </div>
+            </div><!-- END Main Sidebar -->
+        </div><!-- END Site Main-->
+        <!-- BEGIN App Footer -->
+        <div class="app-footer component-container" data-name="app_footer">
+            <div class="label">App Footer</div>
+            <!-- Component Placeholder 10,11,12,13 -->
+        </div>
+        <!-- BEGIN App Footer -->
+    </div><!-- END App -->
+    <!-- BEGIN Modal Login -->
+    <div class="modal" id="loginModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered shadow-lg">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title text-primary mb-2">Đăng nhập</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Vui lòng đăng nhập để sử dụng hệ thống</p>
+                    <div class="mb-2">
+                        <label class="mb-1">Tên đăng nhập / email</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control border-end-0" placeholder="">
+                            <span class="input-group-text bg-transparent border-start-0"><i
+                                    class="fa-regular fa-user opacity-50"></i></span>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="mb-1">Mật khẩu</label>
+                        <div class="input-group mb-3">
+                            <input type="password" name="password" class="form-control border-end-0" placeholder="">
+                            <span class="input-group-text bg-transparent border-start-0"><i
+                                    class="fa-regular fa-eye opacity-50"></i></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-sm w-100 btn-primary pt-2 pb-2 d-block text-uppercase btn-login"
+                            data-bs-dismiss="modal"><strong>Đăng nhập</strong></button>
+                    </div>
+                    <p class="small mb-0 text-center">Nếu bạn chưa có tài khoản <a href="#" target="_blank">liên
+                            hệ</a> để được cấp lại</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN Script Modal -->
+
+    <!-- BEGIN Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header py-2 ps-3 pe-2">
+            <h4 id="offcanvasMenulLabel" class="mb-0">Menu</h4>
+            <button type="button" class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <ul class="nav nav-offcanvas-menu flex-column mt-2 mb-3">
+                <li class="nav-item item-setting-layout">
+                    <a href="setting-layout.html" class="nav-link">Cấu hình Layout</a>
+                </li>
+                <li class="nav-item item-script">
+                    <a href="javascript:;" class="nav-link" data-bs-dismiss="offcanvas">Kịch bản</a>
+                </li>
+                <li class="nav-item item-logout">
+                    <a href="javascript:;" class="nav-link" data-bs-dismiss="offcanvas">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </div> <!-- END Offcanvas -->
+
+    <!-- BEGIN Group Camera Detail -->
+    <div id="groupCameraDetail" class="group-cameras-detail border bg-dark rounded-2 p-3 d-flex flex-column d-none">
+        <div class="d-flex align-items-center">
+            <h6 class="fs-5 fw-bold" id="modalGroupCameraDetailLabel">Ngã tư Nam Kỳ Khởi
+                Nghĩa</h6>
+            <button type="button" class="btn-close ms-auto">&nbsp;</button>
+        </div>
+        <div class="mb-2">
+            <ul class="nav nav-pills mb-2" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link py-1 px-2 rounded-pill active" id="stream-1-tab" data-bs-toggle="pill"
+                        data-bs-target="#stream-1" type="button" role="tab" aria-controls="stream-1"
+                        aria-selected="true">Camera PTZ</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link py-1 px-2 rounded-pill" id="stream-2-tab" data-bs-toggle="pill"
+                        data-bs-target="#stream-2" type="button" role="tab" aria-controls="stream-2"
+                        aria-selected="false">Camera PTZ 2</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link py-1 px-2 rounded-pill" id="stream-3-tab" data-bs-toggle="pill"
+                        data-bs-target="#stream-3" type="button" role="tab" aria-controls="stream-3"
+                        aria-selected="false">
+                        Camera PTZ 3</button>
+                </li>
+            </ul>
+            <!-- BEGIN Content Content -->
+            <div class="tab-content mb-2">
+                <div class="tab-pane fade show active" id="stream-1" role="tabpanel" aria-labelledby="stream-1-tab"
+                    tabindex="0">
+                    <!-- BEGIn Steam Item -->
+                    <div class="stream-item">
+                        <div class="traffic-light-wrapper top">
+                            <div class="traffic-light">
+                                <div class="light-item green">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">20</div>
+                                </div>
+                                <div class="light-item yellow">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">10</div>
+                                </div>
+                                <div class="light-item red active">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-placeholder ratio-16-9">
+                            <div class="bg" style="background-color:#323E50;"></div>
+                            <div class="media-inner d-flex align-items-end">
+                                <div class="p-2 pt-3 w-100 bg-gradient-dark">
+                                    Camera PTZ
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- BEGIn Steam Item -->
+                </div>
+                <div class="tab-pane fade" id="stream-2" role="tabpanel" aria-labelledby="stream-2-tab" tabindex="0">
+                    <!-- BEGIN Steam Item -->
+                    <div class="stream-item">
+                        <div class="traffic-light-wrapper top">
+                            <div class="traffic-light">
+                                <div class="light-item green active">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">20</div>
+                                </div>
+                                <div class="light-item yellow">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">10</div>
+                                </div>
+                                <div class="light-item red">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-placeholder ratio-16-9">
+                            <div class="bg" style="background-color:#323E50;"></div>
+                            <div class="media-inner d-flex align-items-end">
+                                <div class="p-2 pt-3 w-100 bg-gradient-dark">
+                                    Camera PTZ 2
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- END Steam Item -->
+                </div>
+                <div class="tab-pane fade" id="stream-3" role="tabpanel" aria-labelledby="stream-3-tab" tabindex="0">
+                    <!-- END Steam Item -->
+                    <div class="stream-item">
+                        <div class="traffic-light-wrapper top">
+                            <div class="traffic-light">
+                                <div class="light-item green">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">20</div>
+                                </div>
+                                <div class="light-item yellow">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">10</div>
+                                </div>
+                                <div class="light-item red active">
+                                    <div class="animation-bg"></div>
+                                    <div class="count-down">30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-placeholder ratio-16-9">
+                            <div class="bg" style="background-color:#323E50;"></div>
+                            <div class="media-inner d-flex align-items-end">
+                                <div class="p-2 pt-3 w-100 bg-gradient-dark">
+                                    Camera PTZ 3
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- BEGIN Steam Item -->
+                </div>
+            </div><!-- END Content Content -->
+        </div>
+        <div class="flex-grow-1 d-flex flex-column">
+            <!-- BEGIN Live violation Block -->
+            <h5 class="text-primary text-uppercase mb-2"><span>Vi phạm tại điểm</span></h5>
+            <div class="flex-grow-1 custom-scroll-light" data-overlayscrollbars-initialize>
+                <div class="h-0px">
+                    <ul class="live-violations list-unstyled mb-0">
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm Không đội mũ bảo
+                                    hiểm Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item-thumb">
+                                <div class="media-placeholder ratio-4-3">
+                                    <div class="bg" style="background-color:#323E50;"></div>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">Không đội mũ bảo hiểm</div>
+                                <div class="item-meta small text-secondary">Biển số: 59 U1 -
+                                    70156</div>
+                                <div class="item-meta-2 small text-secondary">
+                                    12:22
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END Live violation Block -->
+        </div>
+    </div>
+    <!-- END Group Camera Detail -->
+
+
+    <!-- BEGIN Panel Script -->
+    <div id="panelScript" class="panel-script d-none">
+        <div class="panel-header d-flex align-items-center p-2">
+            <div class="small text-uppercase flex-grow-1"><i class="fa-solid fa-scroll me-2"></i>Kịch bản</div>
+            <button class="btn-close btn-sm btn-close-white ms-auto"></button>
+        </div>
+
+        <ul class="nav flex-column">
+            <li class="nav-item item-stolen">
+                <a href="#" class="nav-link">Hiển thị xe mất cắp</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Hiển thị dẫn đường</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Phát hiện đám cháy</a>
+            </li>
+        </ul>
+    </div><!-- BEGIN Panel Script -->
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/overlayscrollbars/browser/overlayscrollbars.browser.es6.js"></script>
+    <!-- BEGIN ONLY for this page -->
+    <script src="node_modules/gsap/dist/gsap.min.js"></script>
+    <script src="node_modules/flickity/dist/flickity.pkgd.min.js"></script>
+    <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
+    <script src="node_modules/moment/locale/vi.js"></script>
+    <script src="node_modules/highcharts/highcharts.js"></script>
+    <script src="node_modules/highcharts/highcharts-more.js"></script>
+    <script src="node_modules/highcharts/modules/solid-gauge.js"></script>
+    <script src="js/mkCharts.js"></script>
+    <!-- END ONLY for this page -->
+    <script src="js/chart-init.js"></script>
+    <script src="node_modules/@mapbox/mapbox-gl-traffic/mapbox-gl-traffic.js"></script>
+    <script src="js/mapbox-gl-animated-popup.min.js"></script>
+    <script src="js/map-init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        //Modal
+        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        document.querySelector('.item-logout .nav-link').addEventListener('click', (event) => {
+            event.preventDefault();
+            loginModal.show();
+        });
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,408 @@
+@charset "UTF-8";
+/* ==========================================================================
+   1. CSS VARIABLES (Hằng số màu sắc)
+   ========================================================================== */
+:root {
+  --bs-shamrock-green: #00C896;
+  --bs-orange: #F2994A;
+  --bs-golden-orange: #F5A623;
+  --bs-dark-navy: #040B1A;
+  --bs-dusty-blue: #8BA7C7;
+  --bs-azure-blue: #3B8AE2;
+  --bs-safety-orange: #FF5100;
+  --bs-warning-yellow: #FFBB29;
+  --bs-amber-orange: #F2994A;
+}
+
+/* ==========================================================================
+   2. COLORS & BACKGROUNDS (Màu chữ và Màu Nền)
+   ========================================================================== */
+/* Text Colors */
+.text-shamrock-green {
+  color: var(--bs-shamrock-green) !important;
+}
+
+.text-orange {
+  color: var(--bs-orange) !important;
+}
+
+.text-golden-orange {
+  color: var(--bs-golden-orange) !important;
+}
+
+.text-dusty-blue {
+  color: var(--bs-dusty-blue) !important;
+}
+
+.text-amber-orange {
+  color: var(--bs-amber-orange) !important;
+}
+
+.text-custom-gray {
+  color: #666666 !important;
+}
+
+.text-status {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #666666;
+}
+.text-status > span {
+  color: #51B41B;
+}
+
+.text-status-hat > span {
+  color: #F2994A;
+}
+
+/* Background Colors */
+.bg-azure-blue {
+  background-color: var(--bs-azure-blue);
+}
+
+.bg-safety-orange {
+  background-color: var(--bs-safety-orange);
+}
+
+.bg-warning-yellow {
+  background-color: var(--bs-warning-yellow);
+}
+
+.bg-dark-navy {
+  background: var(--bs-dark-navy) !important;
+}
+
+.bg-dot-cyan {
+  background-color: #00EAFF;
+}
+
+.bg-dot-orange {
+  background-color: #F2994A;
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY (Kích thước chữ)
+   ========================================================================== */
+.fs-10px {
+  font-size: 10px !important;
+}
+
+.fs-12px {
+  font-size: 12px !important;
+}
+
+.fs-16px {
+  font-size: 16px !important;
+}
+
+.fs-18px {
+  font-size: 18px !important;
+}
+
+.fs-24px {
+  font-size: 24px !important;
+}
+
+.fs-48px {
+  font-size: 48px;
+}
+
+/* ==========================================================================
+   4. SIZING & SPACING (Kích thước và Khoảng cách)
+   ========================================================================== */
+/* Width & Height limits */
+.width-safety {
+  max-width: 20% !important;
+}
+
+.width-4x {
+  max-width: 40% !important;
+}
+
+.min-width {
+  min-width: 60px;
+}
+
+.min-height {
+  min-height: 119px;
+}
+
+/* Square Sizes */
+.size-10px {
+  width: 10px;
+  height: 10px;
+}
+
+.size-12 {
+  width: 119px;
+  height: 119px;
+}
+
+.size-15 {
+  width: 15px;
+  height: 15px;
+}
+
+.size-24 {
+  width: 24px;
+  height: 24px;
+}
+
+.size-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.size-96 {
+  width: 96px;
+  height: 96px;
+}
+
+/* Spacing Helpers */
+.ps-260px {
+  padding-left: 160px;
+}
+
+.pe-260px {
+  padding-right: 160px;
+}
+
+.pt-80px {
+  padding-top: 120px;
+}
+
+.pb-80px {
+  padding-bottom: 180px;
+}
+
+/* ==========================================================================
+   5. BORDERS & SHAPES (Viền và Hình khối)
+   ========================================================================== */
+.custom-border {
+  border-color: #1B3A6B !important;
+}
+
+.rounded-3px {
+  border-radius: 3px;
+}
+
+.hr-color {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Tạo đường kẻ dọc mờ giữa 2 cột */
+.border-divider {
+  border-right: 1px solid #1F2D49;
+}
+
+.border-divider-start {
+  border-left: 1px solid #1F2D49;
+}
+
+/* Ẩn đường kẻ khi trên màn hình nhỏ (mobile) để tránh bị xấu */
+@media (max-width: 767.98px) {
+  .border-divider {
+    border-right: none;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+.parallelogram-slanted {
+  width: 16px;
+  height: 22px;
+  background-color: #1e2434;
+  /* Đẩy toàn bộ hình "ngả" sang phải 37 độ */
+  transform: skewX(-37deg);
+  margin-top: 18px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+/* ==========================================================================
+   6. UI COMPONENTS (Các thành phần Giao diện)
+   ========================================================================== */
+/* Custom Select Dropdown */
+.form-select.custom-select {
+  min-width: 160px;
+  color: #8BA7C7;
+  border-radius: 0 !important;
+  /* Đổi màu icon mũi tên dropdown */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%238BA7C7' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+/* Icon Effects */
+.icon-stretch {
+  display: inline-block;
+  transform: scaleX(2.8);
+  /* Kéo ngang icon */
+}
+
+/* SCROLLBAR CUSTOM cho khu vực biểu đồ */
+.chart-scroll-wrapper::-webkit-scrollbar {
+  height: 4px;
+  /* Độ mỏng của thanh cuộn ngang */
+}
+
+.chart-scroll-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chart-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+.chart-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* CHARTS */
+.bubble-chart {
+  height: 157px;
+  width: 100%;
+}
+
+/* GAUGE & DASHBOARD ITEMS (Điểm số an toàn) */
+#gval {
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  margin-top: -6px;
+  letter-spacing: 1px;
+}
+
+.gauge-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   7. MAIN LAYOUT (Bố cục chính)
+   ========================================================================== */
+/* Sidebar Panel */
+.main-sidebar-customer {
+  min-width: 25rem !important;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.main-sidebar-customer .h-0px {
+  height: 100% !important;
+  overflow-y: auto !important;
+}
+.main-sidebar-customer .component-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ==========================================================================
+   8. MAP & VIGNETTE (Bản đồ)
+   ========================================================================== */
+.map-wrapper {
+  pointer-events: none;
+}
+
+/* Lớp div bọc ảnh sơ đồ */
+.vignette-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.vignette-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: block;
+  /* Bắt buộc để js getBoundingClientRect() trả về đúng */
+  /* Làm nét ảnh nền */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+.vignette-container {
+  /* Hiệu ứng mờ ảo góc (Vignette) đè lên ảnh */
+}
+.vignette-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 200px 50px rgba(4, 11, 26, 0.9);
+  pointer-events: none;
+  /* Cho phép click xuyên lớp mờ */
+  z-index: 2;
+  /* Nằm trên ảnh nhưng dưới các cục UI (camera) */
+}
+
+/* ==========================================================================
+   9. MODALS & POPUPS
+   ========================================================================== */
+.custom-cam-modal {
+  min-width: 360px;
+}
+.custom-cam-modal .modal-header {
+  /* Bổ sung css header nếu có */
+}
+
+.input-group-choose-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.input-group-choose-date .input-choose-date {
+  border: none !important;
+  outline: none !important;
+  padding-left: 0px !important;
+}
+.input-group-choose-date .form-control {
+  background-color: rgba(0, 0, 0, 0) !important;
+  border-color: none;
+}
+.input-group-choose-date .input-group-text {
+  border-color: none;
+}
+
+/* KHỎI LO MẤT NĂM TRONG FLATPICKR - BẢO ĐẢM HIỂN THỊ RÕ RÀNG */
+.flatpickr-months .flatpickr-month {
+  height: 40px !important;
+}
+
+.flatpickr-current-month {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.flatpickr-current-month .numInputWrapper {
+  display: inline-block !important;
+  width: 6.5ch !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.flatpickr-current-month .cur-year {
+  display: inline-block !important;
+  color: #ffffff !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+
+.flatpickr-current-month .cur-year:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}/*# sourceMappingURL=safety_dashboard.css.map */
