@@ -1,6 +1,6 @@
 
 //Thứ tự xắp xếp Mặc định
-const defaut_listSortOrder = { "header_center": ["1"], "header_end": ["2", "3"], "map_top_left": ["6"], "map_top_right": ["7"], "map_bottom_left": ["8"], "map_bottom_right": ["9"], "content_footer": ["14"], "main_sidebar": ["4", "5"], "app_footer": ["10", "11", "12", "13"], "inactive_components": ["15","24","25","26","27","28","29","30","31","32"] };
+const defaut_listSortOrder = { "header_center": ["1"], "header_end": ["2", "3"], "map_top_left": ["6"], "map_top_right": ["7"], "map_bottom_left": ["8"], "map_bottom_right": ["9"], "content_footer": ["14"], "main_sidebar": ["4", "5"], "app_footer": ["10", "11", "12", "13"], "inactive_components": ["15", "24", "25", "26", "27", "28", "29", "30", "31", "32"] };
 
 var listSortOrder = {};
 
@@ -199,9 +199,9 @@ let apiKey = '4d64ee966ea03fd197abf2ec155bb799',
     corLat = '10.78433466277609',
     corLong = '106.69166849546065';
 
-    //ENAV Map
-    // corLat = '20.8277361',
-    // corLong = '106.7831117';
+//ENAV Map
+// corLat = '20.8277361',
+// corLong = '106.7831117';
 
 function getWeather() {
     const weather_image = document.getElementById('weather_image');
@@ -312,7 +312,7 @@ function demo_script() {
         event.preventDefault();
         if (map.loaded()) {
             mk_stolen();
-          
+
         }
     });
     //Hiện đám cháy
@@ -320,7 +320,7 @@ function demo_script() {
         event.preventDefault();
         if (map.loaded()) {
             mk_fireTruck();
-            
+
             //Xong hiện xe cứu thương
             setTimeout(() => {
                 mk_ambulance();
