@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // 8. PARKING DOT GRID
-const TOTAL = 70;
+const TOTAL = 60;
 const slots = [];
 
 for (let i = 0; i < TOTAL; i++) {
