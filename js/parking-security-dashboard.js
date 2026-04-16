@@ -2,7 +2,6 @@
 // PARKING SECURITY DASHBOARD - LOGIC
 // ==============================================================================
 
-
 // 1. BIỂU ĐỒ ĐIỂM SỐ AN TOÀN (GAUGE CHART)
 (function () {
     const canvas = document.getElementById('gc');

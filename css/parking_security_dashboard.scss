@@ -1,7 +1,8 @@
-/* ==========================================================================
-   1. CSS VARIABLES (Hằng số màu sắc)
-   ========================================================================== */
+// ==========================================================================
+// 1. CSS VARIABLES
+// ==========================================================================
 :root {
+    // Brand palette
     --bs-shamrock-green: #00C896;
     --bs-orange: #F2994A;
     --bs-golden-orange: #F5A623;
@@ -12,13 +13,21 @@
     --bs-warning-yellow: #FFBB29;
     --bs-amber-orange: #F2994A;
     --bs-bright-red: #FF4444;
-    --bs-dusty-blue: #8BA7C7;
+
+    // Map icon palette
+    --map-cyan: #00e5ff;
+    --map-cyan-dark: #00b3cc;
+    --map-navy: #031b2b;
+    --map-amber: #f6b43e;
+    --map-alert-yellow: #faba10;
 }
 
-/* ==========================================================================
-   2. COLORS & BACKGROUNDS (Màu chữ và Màu Nền)
-   ========================================================================== */
-/* Text Colors */
+
+// ==========================================================================
+// 2. COLORS & BACKGROUNDS
+// ==========================================================================
+
+// --- Text ---
 .text-shamrock-green {
     color: var(--bs-shamrock-green) !important;
 }
@@ -47,10 +56,6 @@
     color: var(--bs-bright-red);
 }
 
-.text-dusty-blue {
-    color: var(--bs-dusty-blue);
-}
-
 .text-status {
     font-size: 14px;
     font-weight: 400;
@@ -60,33 +65,19 @@
     >span {
         color: #51B41B;
     }
-}
 
-.text-status-hat {
-    >span {
+    &.text-status-hat>span {
         color: #F2994A;
     }
 }
 
-/* Background Colors */
-.bg-bright-red {
-    background-color: var(--bs-bright-red);
-}
-
-.bg-orange {
-    background: #faba10 !important;
-}
-
-.bg-blue {
-    background: #3b82f6 !important;
-}
-
+// --- Background ---
 .bg-azure-blue {
-    background-color: var(--bs-azure-blue);
+    background-color: var(--bs-azure-blue) !important;
 }
 
 .bg-safety-orange {
-    background-color: var(--bs-safety-orange);
+    background-color: var(--bs-safety-orange) !important;
 }
 
 .bg-warning-yellow {
@@ -97,6 +88,10 @@
     background: var(--bs-dark-navy) !important;
 }
 
+.bg-bright-red {
+    background-color: var(--bs-bright-red);
+}
+
 .bg-dot-cyan {
     background-color: #00EAFF;
 }
@@ -105,14 +100,68 @@
     background-color: #F2994A;
 }
 
-.bg-muted {
-    background-color: #8BA7C7;
+.bg-orange {
+    background: #faba10 !important;
 }
 
-/* ==========================================================================
-   4. SIZING & SPACING (Kích thước và Khoảng cách)
-   ========================================================================== */
-/* Width & Height limits */
+.bg-blue {
+    background: #3b82f6 !important;
+}
+
+.bg-muted {
+    background-color: #8BA7C7 !important;
+}
+
+
+// ==========================================================================
+// 3. TYPOGRAPHY
+// ==========================================================================
+.fs-11px {
+    font-size: 11px;
+}
+
+.fs-12px {
+    font-size: 12px !important;
+}
+
+.fs-14px {
+    font-size: 14px !important;
+}
+
+.fs-16px {
+    font-size: 16px !important;
+}
+
+.fs-18px {
+    font-size: 18px !important;
+}
+
+.fs-20px {
+    font-size: 20px;
+}
+
+.fs-24px {
+    font-size: 24px !important;
+}
+
+.fs-40px {
+    font-size: 40px;
+}
+
+.fs-42px {
+    font-size: 42px !important;
+}
+
+.fs-48px {
+    font-size: 48px;
+}
+
+
+// ==========================================================================
+// 4. SIZING & SPACING
+// ==========================================================================
+
+// Width / height limits
 .width-safety {
     max-width: 20% !important;
 }
@@ -129,7 +178,11 @@
     min-height: 119px;
 }
 
-/* Square Sizes */
+.min-h-202px {
+    min-height: 208px;
+}
+
+// Square sizes
 .size-10px {
     width: 10px;
     height: 10px;
@@ -170,7 +223,7 @@
     height: 96px;
 }
 
-/* Spacing Helpers */
+// Spacing helpers
 .ps-260px {
     padding-left: 160px;
 }
@@ -187,44 +240,12 @@
     padding-bottom: 180px;
 }
 
-.fs-11px {
-    font-size: 11px;
-}
 
-.fs-12px {
-    font-size: 12px;
-}
-
-.fs-14px {
-    font-size: 14px;
-}
-
-.fs-16px {
-    font-size: 16px;
-}
-
-.fs-20px {
-    font-size: 20px;
-}
-
-.fs-24px {
-    font-size: 24px;
-}
-
-.fs-40px {
-    font-size: 40px;
-}
-
-.fs-42px {
-    font-size: 42px;
-}
-
-.fs-48px {
-    font-size: 48px;
-}
-
-.min-h-202px {
-    min-height: 208px;
+// ==========================================================================
+// 5. BORDERS & SHAPES
+// ==========================================================================
+.custom-border {
+    border-color: #1B3A6B !important;
 }
 
 .border-muted {
@@ -233,23 +254,439 @@
     background: transparent;
 }
 
-.warning-icon {
-    position: absolute;
-    top: -2px;
-    right: -16px;
+.rounded-3px {
+    border-radius: 3px;
 }
 
-.bg-muted {
-    background-color: #8BA7C7 !important;
+.rounded-custom {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.hr-color {
+    background-color: rgba(255, 255, 255, .2);
 }
 
 .custom-divider {
     border-color: rgba(white, .1) !important;
 }
 
-/* ==========================================================================
-   2. MAP ICONS
-   ========================================================================== */
+.border-divider {
+    border-right: 1px solid #1F2D49;
+
+    @media (max-width: 767.98px) {
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+
+.border-divider-start {
+    border-left: 1px solid #1F2D49;
+}
+
+.parallelogram-slanted {
+    width: 16px;
+    height: 22px;
+    background-color: #1e2434;
+    transform: skewX(-37deg);
+    margin-top: 18px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.warning-icon {
+    position: absolute;
+    top: -2px;
+    right: -16px;
+}
+
+
+// ==========================================================================
+// 6. UI COMPONENTS
+// ==========================================================================
+
+// Custom select dropdown
+.form-select.custom-select {
+    min-width: 160px;
+    color: #8BA7C7;
+    border-radius: 0 !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%238BA7C7' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+// Icon stretch
+.icon-stretch {
+    display: inline-block;
+    transform: scaleX(2.8);
+}
+
+// Scrollbar cho chart
+.chart-scroll-wrapper {
+    &::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #444;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #666;
+    }
+}
+
+// Charts
+.bubble-chart {
+    height: 157px;
+    width: 100%;
+}
+
+// Gauge / safety score
+#gval {
+    font-size: 24px;
+    font-weight: 400;
+    color: #fff;
+    margin-top: -6px;
+    letter-spacing: 1px;
+}
+
+.gauge-meta {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+// Progress bar
+.progress-track {
+    width: 100%;
+    height: 6px;
+    background: #1B3A6B;
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.progress-value {
+    min-width: 34px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.fill-yellow {
+    background: #F2C94C !important;
+}
+
+.fill-green {
+    background: #00C896 !important;
+}
+
+.fill-blue {
+    background: #3B9EFF !important;
+}
+
+.fill-muted {
+    background: #8BA7C7 !important;
+}
+
+// Parking-widget (pw / ph / dot-grid)
+.pw {
+    border-radius: 16px;
+    color: white;
+    margin-top: 12px;
+}
+
+.ph {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.ph-arrow {
+    color: #2dd4bf;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.ph-title {
+    color: #2dd4bf;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.dot-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px 0;
+    padding: 8px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dot {
+    display: block;
+    width: 70%;
+    max-width: 15px;
+    aspect-ratio: 1 / 1;
+    height: auto !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 auto;
+    padding: 0;
+
+    &:hover {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+
+    &.free {
+        background-color: #3b82f6 !important;
+    }
+
+    &.occupied {
+        background-color: #1a3558 !important;
+    }
+}
+
+.divider {
+    border: none;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 14px;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.status-val {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+// Date input group
+.input-group-choose-date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    .input-choose-date {
+        border: none !important;
+        outline: none !important;
+        padding-left: 0 !important;
+    }
+
+    .form-control {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+}
+
+// Flatpickr — đảm bảo năm hiển thị đầy đủ
+.flatpickr-months .flatpickr-month {
+    height: 40px !important;
+}
+
+.flatpickr-current-month {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    .numInputWrapper {
+        display: inline-block !important;
+        width: 6.5ch !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .cur-year {
+        display: inline-block !important;
+        color: #ffffff !important;
+        background: transparent !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        font-size: 16px !important;
+        font-weight: bold !important;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+    }
+}
+
+
+// ==========================================================================
+// 7. ANIMATIONS
+// ==========================================================================
+@keyframes waveShimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes fadeInItem {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes radar-ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 40px;
+        height: 40px;
+        opacity: 0;
+    }
+}
+
+.fade-in-item {
+    animation: fadeInItem 0.8s ease forwards;
+}
+
+.blink {
+    animation: blinker 1.5s linear infinite;
+}
+
+
+// ==========================================================================
+// 8. SKELETON LOADING
+// ==========================================================================
+%shimmer-base {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.08) 50%,
+                rgba(255, 255, 255, 0) 100%);
+        animation: waveShimmer 1.5s infinite ease-in-out;
+        z-index: 1;
+    }
+}
+
+.skeleton-bg {
+    @extend %shimmer-base;
+    background: #242f44 !important;
+}
+
+.skeleton-bar {
+    @extend %shimmer-base;
+    height: 12px;
+    background: #242f44 !important;
+    border-radius: 4px;
+}
+
+.snapshot-skeleton {
+    @extend %shimmer-base;
+    width: 100%;
+    height: 119px;
+    background: #0f172a;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    &::after {
+        background: linear-gradient(90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.06) 50%,
+                rgba(255, 255, 255, 0) 100%);
+    }
+
+    .skeleton-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.03);
+    }
+}
+
+
+// ==========================================================================
+// 9. MAP & VIGNETTE
+// ==========================================================================
+.map-wrapper {
+    pointer-events: none;
+}
+
+.vignette-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        image-rendering: pixelated;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        box-shadow: inset 0 0 200px 50px rgba(4, 11, 26, 0.9);
+        pointer-events: none;
+        z-index: 2;
+    }
+}
+
+
+// ==========================================================================
+// 10. MAP ICONS
+// ==========================================================================
 .map-icon {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -271,6 +708,7 @@
         object-fit: contain;
     }
 
+    // Disable arc decorators — icon image handles visual
     &::before,
     &::after {
         display: none !important;
@@ -280,12 +718,7 @@
         transform: translate(-50%, -50%) scale(1.1);
     }
 
-    &.active {
-        .brackets {
-            display: block;
-        }
-    }
-
+    // --- Alert dot ---
     .alert-dot {
         display: none;
         position: absolute;
@@ -293,7 +726,7 @@
         right: 0;
         width: 12px;
         height: 12px;
-        background: #faba10;
+        background: var(--map-alert-yellow);
         border-radius: 50%;
         border: 2px solid #040B1A;
         z-index: 12;
@@ -306,7 +739,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
-            border: 1.5px solid #faba10;
+            border: 1.5px solid var(--map-alert-yellow);
             animation: radar-ripple 2s infinite ease-out;
         }
 
@@ -319,6 +752,7 @@
         display: block;
     }
 
+    // --- Brackets (shown on active) ---
     .brackets {
         display: none;
         position: absolute;
@@ -333,57 +767,51 @@
             position: absolute;
             width: 10px;
             height: 10px;
-            border: 2px solid #f6b43e;
+            border: 2px solid var(--map-amber);
         }
+    }
 
-        .br-tl {
-            top: 0;
-            left: 0;
-            border-right: none !important;
-            border-bottom: none !important;
-        }
-
-        .br-tr {
-            top: 0;
-            right: 0;
-            border-left: none !important;
-            border-bottom: none !important;
-        }
-
-        .br-bl {
-            bottom: 0;
-            left: 0;
-            border-right: none !important;
-            border-top: none !important;
-        }
-
-        .br-br {
-            bottom: 0;
-            right: 0;
-            border-left: none !important;
-            border-top: none !important;
-        }
+    &.active .brackets {
+        display: block;
     }
 }
 
-@keyframes radar-ripple {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 1;
-    }
-
-    100% {
-        width: 40px;
-        height: 40px;
-        opacity: 0;
-    }
+// Bracket corner helpers (used inside .brackets)
+.br-tl {
+    top: 0;
+    left: 0;
+    border-right: none !important;
+    border-bottom: none !important;
 }
 
-/* Custom Camera Modal */
+.br-tr {
+    top: 0;
+    right: 0;
+    border-left: none !important;
+    border-bottom: none !important;
+}
+
+.br-bl {
+    bottom: 0;
+    left: 0;
+    border-right: none !important;
+    border-top: none !important;
+}
+
+.br-br {
+    bottom: 0;
+    right: 0;
+    border-left: none !important;
+    border-top: none !important;
+}
+
+
+// ==========================================================================
+// 11. CAMERA MODAL
+// ==========================================================================
 .custom-cam-modal {
     position: fixed;
-    width: 320px;
+    min-width: 360px;
     background: #111a2e;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
@@ -393,6 +821,7 @@
     font-family: 'Inter', sans-serif;
     overflow: hidden;
 
+    // --- Header ---
     .modal-header {
         padding: 15px;
         display: flex;
@@ -432,6 +861,7 @@
         }
     }
 
+    // --- Date input ---
     .custom-input-group {
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         padding: 10px 15px;
@@ -450,6 +880,7 @@
         }
     }
 
+    // --- Body ---
     .modal-body {
         padding: 15px;
 
@@ -511,11 +942,41 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+
+                    &.bg-orange {
+                        background: #faba10 !important;
+                    }
+
+                    &.bg-blue {
+                        background: #3b82f6 !important;
+                    }
+
+                    &.bg-azure-blue {
+                        background: var(--bs-azure-blue) !important;
+                    }
+
+                    &.bg-muted {
+                        background: #1a2236 !important;
+                    }
+
+                    .skeleton-bar {
+                        background: rgba(255, 255, 255, 0.1) !important;
+                        z-index: 3;
+                        display: block;
+
+                        &::after {
+                            background: linear-gradient(90deg,
+                                    rgba(255, 255, 255, 0) 0%,
+                                    rgba(255, 255, 255, 0.15) 50%,
+                                    rgba(255, 255, 255, 0) 100%);
+                        }
+                    }
                 }
             }
         }
     }
 
+    // --- Footer ---
     .modal-footer {
         padding: 15px;
         display: flex;
@@ -538,320 +999,23 @@
     }
 }
 
-/* ==========================================================================
-   3. SKELETON LOADING
-   ========================================================================== */
-.skeleton-bg {
-    background: #242f44 !important;
-    position: relative;
-    overflow: hidden;
-}
 
-.skeleton-bar {
-    height: 12px;
-    background: #242f44 !important;
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-}
+// ==========================================================================
+// 12. MAIN LAYOUT
+// ==========================================================================
+.main-sidebar-customer {
+    min-width: 25rem !important;
+    padding-left: 8px;
+    padding-right: 8px;
 
-.skeleton-bg::after,
-.skeleton-bar::after,
-.snapshot-skeleton::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.08) 50%,
-            rgba(255, 255, 255, 0) 100%);
-    animation: waveShimmer 1.5s infinite ease-in-out;
-    z-index: 1;
-}
-
-.snapshot-skeleton {
-    width: 100%;
-    height: 119px;
-    background: #0f172a;
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(90deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.06) 50%,
-                rgba(255, 255, 255, 0) 100%);
-        animation: waveShimmer 1.5s infinite ease-in-out;
+    .h-0px {
+        height: 100% !important;
+        overflow-y: auto !important;
     }
 
-    .skeleton-info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 32px;
-        background: rgba(255, 255, 255, 0.03);
+    .component-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
-}
-
-@keyframes waveShimmer {
-    0% {
-        transform: translateX(-100%);
-    }
-
-    100% {
-        transform: translateX(100%);
-    }
-}
-
-.fade-in-item {
-    animation: fadeInItem 0.8s ease forwards;
-}
-
-@keyframes fadeInItem {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.blink {
-    animation: blinker 1.5s linear infinite;
-}
-
-@keyframes blinker {
-    50% {
-        opacity: 0;
-    }
-}
-
-/* Utilities */
-.bg-safety-orange {
-    background-color: var(--bs-safety-orange) !important;
-}
-
-.size-32 {
-    width: 32px;
-    height: 32px;
-}
-
-
-/* ==========================================================================
-   9. MODALS & POPUPS
-   ========================================================================== */
-.custom-cam-modal {
-    min-width: 360px;
-
-    .modal-header {
-        /* Bổ sung css header nếu có */
-    }
-}
-
-.rounded-custom {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
-
-.input-group-choose-date {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 16px;
-    padding-right: 16px;
-
-    .input-choose-date {
-        border: none !important;
-        outline: none !important;
-        padding-left: 0px !important;
-
-    }
-
-    .form-control {
-        background-color: rgba(0, 0, 0, 0) !important;
-        border-color: none;
-
-    }
-
-    .input-group-text {
-        border-color: none;
-
-    }
-}
-
-/* KHỎI LO MẤT NĂM TRONG FLATPICKR - BẢO ĐẢM HIỂN THỊ RÕ RÀNG */
-.flatpickr-months .flatpickr-month {
-    height: 40px !important;
-}
-
-.flatpickr-current-month {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.flatpickr-current-month .numInputWrapper {
-    display: inline-block !important;
-    width: 6.5ch !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-.flatpickr-current-month .cur-year {
-    display: inline-block !important;
-    color: #ffffff !important;
-    background: transparent !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-}
-
-.flatpickr-current-month .cur-year:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-}
-
-// ************
-// Progress bar
-// ************
-.progress-track {
-    width: 100%;
-    height: 6px;
-    background: #1B3A6B;
-    border-radius: 999px;
-    position: relative;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    border-radius: 999px;
-}
-
-.progress-value {
-    min-width: 34px;
-    text-align: right;
-    white-space: nowrap;
-}
-
-.fill-yellow {
-    background: #F2C94C !important;
-}
-
-.fill-green {
-    background: #00C896 !important;
-}
-
-.fill-blue {
-    background: #3B9EFF !important;
-}
-
-.fill-muted {
-    background: #8BA7C7 !important;
-}
-
-
-
-
-.pw {
-    // background: #0d1b2e;
-    border-radius: 16px;
-    // padding: 20px 24px 24px;
-    color: white;
-    // width: 620px;
-    margin-top: 12px;
-}
-
-.ph {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.ph-arrow {
-    color: #2dd4bf;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1;
-}
-
-.ph-title {
-    color: #2dd4bf;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.dot-grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 10px 0; // Chỉ dùng gap dọc, gap ngang sẽ dùng margin của dot
-    padding: 8px 0;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.dot {
-    display: block;
-    width: 70%; // Chiếm 70% chiều rộng ô Grid
-    max-width: 15px; // Giới hạn max
-    aspect-ratio: 1 / 1;
-    height: auto !important;
-    border-radius: 50% !important;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin: 0 auto; // Tự động tạo khoảng cách đều 15% mỗi bên
-    padding: 0;
-
-    &:hover {
-        opacity: 0.8;
-        transform: scale(1.2);
-    }
-
-    &.free {
-        background-color: #3b82f6 !important;
-    }
-
-    &.occupied {
-        background-color: #1a3558 !important;
-    }
-}
-
-.divider {
-    border: none;
-    border-top: 0.5px solid rgba(255, 255, 255, 0.12);
-    margin-bottom: 14px;
-}
-
-.status-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.status-label {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.45);
-}
-
-.status-val {
-    font-size: 16px;
-    font-weight: 600;
 }
