@@ -350,6 +350,7 @@ const mapCameras = [
     { id: 'Cam-03', left: 65, top: 65, location: 'Khu vực C', status: 'Hoạt động' }
 ];
 
+
 function initMapIcons() {
     const vc = document.querySelector('.vignette-container');
     const img = vc ? vc.querySelector('img') : null;
@@ -400,81 +401,98 @@ function initMapIcons() {
     if (img.complete) placeIcons(); else img.addEventListener('load', placeIcons);
     new ResizeObserver(placeIcons).observe(vc);
 
-    // Zoom & Pan
-    let zoom = 1, px = 0, py = 0;
-    let isPan = false, startX = 0, startY = 0, startPx = 0, startPy = 0;
-    let vx = 0, vy = 0, prevX = 0, prevY = 0, rafId = null;
+    // Zoom & Pan (Đồng bộ từ Safety Dashboard)
+    let zoom = 1;
+    let px = 0;
+    let py = 0;
+    let isPan = false;
+    let startX = 0;
+    let startY = 0;
+    let rafId = null;
 
-    function applyT() {
-        vc.style.transition = 'none';
-        vc.style.transformOrigin = 'center center';
+    const applyT = () => {
         vc.style.transform = `translate(${px}px, ${py}px) scale(${zoom})`;
-    }
-
-    function applySmooth() {
-        vc.style.transition = 'transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94)';
         vc.style.transformOrigin = 'center center';
-        vc.style.transform = `translate(${px}px, ${py}px) scale(${zoom})`;
-    }
+    };
 
-    // Scroll wheel zoom vào điểm con trỏ
-    vc.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        const rect = vc.getBoundingClientRect();
-        const mx = e.clientX - rect.left - rect.width / 2;
-        const my = e.clientY - rect.top - rect.height / 2;
-        const factor = e.deltaY < 0 ? 1.1 : 0.9;
-        const newZoom = Math.min(4, Math.max(0.5, zoom * factor));
-        const ratio = newZoom / zoom;
-        px = mx - (mx - px) * ratio;
-        py = my - (my - py) * ratio;
-        zoom = newZoom;
-        applyT();
-    }, { passive: false });
-
-    // Pan
-    vc.addEventListener('mousedown', (e) => {
-        if (e.target.closest('.map-icon')) return;
-        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-        isPan = true; vx = 0; vy = 0;
-        startX = e.clientX; startY = e.clientY;
-        startPx = px; startPy = py;
-        prevX = e.clientX; prevY = e.clientY;
-        vc.style.cursor = 'grabbing';
-    });
-
-    window.addEventListener('mousemove', (e) => {
-        if (!isPan) return;
-        vx = e.clientX - prevX;
-        vy = e.clientY - prevY;
-        prevX = e.clientX;
-        prevY = e.clientY;
-        px = startPx + (e.clientX - startX);
-        py = startPy + (e.clientY - startY);
-        applyT();
-    });
-
-    window.addEventListener('mouseup', () => {
-        if (!isPan) return;
-        isPan = false;
-        vc.style.cursor = 'grab';
-        function glide() {
-            vx *= 0.88; vy *= 0.88;
-            if (Math.abs(vx) < 0.3 && Math.abs(vy) < 0.3) return;
-            px += vx; py += vy;
-            applyT();
-            rafId = requestAnimationFrame(glide);
-        }
-        rafId = requestAnimationFrame(glide);
-    });
-
+    // Zoom Buttons
     const bC = document.getElementById('back_to_center');
     const bI = document.getElementById('zoom_in');
     const bO = document.getElementById('zoom_out');
 
-    if (bC) bC.onclick = () => { zoom = 1; px = 0; py = 0; applySmooth(); };
-    if (bI) bI.onclick = () => { zoom = Math.min(zoom + 0.25, 4); applySmooth(); };
-    if (bO) bO.onclick = () => { zoom = Math.max(zoom - 0.25, 0.5); applySmooth(); };
+    if (bC) bC.onclick = () => {
+        zoom = 1; px = 0; py = 0;
+        vc.style.transition = 'transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        applyT();
+    };
+
+    if (bI) bI.onclick = () => {
+        zoom = Math.min(zoom + 0.1, 4);
+        vc.style.transition = 'transform 0.2s ease-out';
+        applyT();
+    };
+
+    if (bO) bO.onclick = () => {
+        zoom = Math.max(zoom - 0.1, 0.4);
+        vc.style.transition = 'transform 0.2s ease-out';
+        applyT();
+    };
+
+    // Panning (Drag to Move)
+    vc.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.map-icon') || e.target.closest('.map-popup')) return;
+        e.preventDefault(); // Quan trọng: Ngăn dính chuột vào ảnh
+
+        isPan = true;
+        startX = e.clientX - px;
+        startY = e.clientY - py;
+
+        vc.style.cursor = 'grabbing';
+        vc.style.transition = 'none';
+        vc.style.userSelect = 'none';
+        document.body.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isPan) return;
+        px = e.clientX - startX;
+        py = e.clientY - startY;
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+            applyT();
+        });
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isPan) {
+            isPan = false;
+            vc.style.cursor = 'grab';
+            vc.style.userSelect = '';
+            document.body.style.cursor = '';
+        }
+    });
+
+    // Mouse Wheel Zoom - SIÊU MƯỢT
+    vc.style.willChange = 'transform'; // Kích hoạt GPU trước
+
+    vc.addEventListener('wheel', (e) => {
+        e.preventDefault();
+
+        // Tính toán tỉ lệ zoom dựa trên delta thực tế của chuột
+        // Lăn nhanh zoom nhanh, lăn chậm zoom mịn
+        const scaleFactor = -e.deltaY * 0.001;
+        const newZoom = Math.min(Math.max(zoom + scaleFactor, 0.4), 4);
+
+        if (newZoom !== zoom) {
+            zoom = newZoom;
+            vc.style.transition = 'none';
+            applyT();
+        }
+    }, { passive: false });
+
+    // Ngăn chặn mặc định khi kéo ảnh bên trong
+    img.addEventListener('dragstart', (e) => e.preventDefault());
 
     vc.style.cursor = 'grab';
 }
@@ -488,66 +506,121 @@ function showCameraPopup(cam, iconEl) {
     popup.className = 'custom-cam-modal';
     popup.innerHTML = `
         <div class="modal-header">
-            <span class="size-32 d-flex align-items-center justify-content-center rounded-circle bg-safety-orange me-2">
-                <i class="fa-solid fa-play"></i>
-            </span>
+            <span class="size-32 d-flex align-items-center justify-content-center rounded-circle bg-safety-orange me-2"><i class="fa-solid fa-play"></i></span>
             <div class="title-group">
                 <h4 class="fs-16px lh-1 fw-normal text-white mb-1">Camera 01 - Đầu vào</h4>
                 <p class="small lh-1 fw-normal text-white opacity-50 mb-0">Lô A1</p>
             </div>
             <button class="close-btn"><i class="fa-light fa-xmark"></i></button>
         </div>
-
+        
         <div class="input-group-choose-date input-group-sm custom-input-group flex items-center justify-between">
             <span class="d-flex align-items-center">
                 <i class="text-[16px] me-2 text-white fa-regular fa-calendar"></i>
-                <input type="text" class="input-choose-date pl-2 bg-transparent text-white opacity-50 text-[16px] leading-[100%]"
-                    placeholder="Chọn ngày" id="dateMarker">
+                <input type="text" class="input-choose-date pl-2 bg-transparent text-white opacity-50 text-[16px] leading-[100%]" placeholder="Chọn ngày" id="dateMarker">
             </span>
             <i class="text-[16px] text-white/50 fa-regular fa-chevron-right cursor-pointer"></i>
         </div>
-
+        
         <div class="modal-body">
             <div class="modal-body-header">
                 <h5 class="fs-14px lh-1 fw-medium text-white">Hôm nay</h5>
-                <span class="alert-badge min-width text-center fs-14px lh-1 fw-medium text-white py-1">
-                    <i class="me-2 fa-solid fa-bell"></i>05+
-                </span>
+                <span class="alert-badge min-width text-center fs-14px lh-1 fw-medium text-white py-1"><i class="me-2 fa-solid fa-bell"></i>05+</span>
             </div>
-            <div class="custom-scroll-light pe-1" data-overlayscrollbars-initialize style="max-height:260px;overflow-x:hidden;">
-                <div class="snapshots row g-3 mx-0">
-                    ${[
-            { img: 'scene-photo-1.jpg', bg: 'bg-orange' },
-            { img: 'scene-photo-2.png', bg: 'bg-blue' },
-            { img: 'scene-photo-1.jpg', bg: 'bg-orange' },
-            { img: 'scene-photo-1.jpg', bg: 'bg-orange' },
-            { img: 'scene-photo-1.jpg', bg: 'bg-orange' },
-            { img: 'scene-photo-1.jpg', bg: 'bg-orange' },
-            { img: 'scene-photo-1.jpg', bg: 'bg-orange' },
-        ].map(s => `
-                        <div class="col-4">
-                            <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
-                                <img src="img/${s.img}" alt="Snapshot"
-                                    class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-                                <div class="timestamp ${s.bg} p-2 position-absolute bottom-0 start-0 w-100">
-                                    <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
-                                        <i class="fa-regular fa-clock me-1"></i>15:01
-                                    </span>
-                                    <i class="fa-light fa-arrow-up-right"></i>
+            <div class="custom-scroll-light" data-overlayscrollbars-initialize style="max-height: 260px; overflow-x: hidden;">
+                <div class="snapshots row g-3">
+                    <!-- The Loading/Newest capture placeholder (Full skeleton integration) -->
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative border border-white/5">
+                            <div class="skeleton-bg position-absolute top-0 start-0 w-100 h-100"></div>
+                            <div class="timestamp p-2 position-absolute bottom-0 start-0 w-100 rounded-custom d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="skeleton-bar me-1 mb-0" style="width: 14px; height: 14px; border-radius: 50%;"></div>
+                                    <div class="skeleton-bar mb-0" style="width: 35px; height: 8px; border-radius: 2px;"></div>
                                 </div>
+                                <div class="skeleton-bar mb-0" style="width: 10px; height: 10px; border-radius: 2px;"></div>
                             </div>
                         </div>
-                    `).join('')}
+                    </div>
+                    
+                    <!-- Fixed historical data (No animation) -->
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
+                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
+                                    <i class="fa-regular fa-clock me-1"></i>15:01
+                                </span>
+                                <i class="fa-light fa-arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
+                            <img src="img/scene-photo-2.png" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp bg-blue p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
+                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
+                                    <i class="fa-regular fa-clock me-1"></i>15:00
+                                </span>
+                                <i class="fa-light fa-arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
+                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
+                                    <i class="fa-regular fa-clock me-1"></i>14:55
+                                </span>
+                                <i class="fa-light fa-arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
+                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
+                                    <i class="fa-regular fa-clock me-1"></i>14:50
+                                </span>
+                                <i class="fa-light fa-arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
+                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
+                                    <i class="fa-regular fa-clock me-1"></i>14:45
+                                </span>
+                                <i class="fa-light fa-arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
+                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
+                                    <i class="fa-regular fa-clock me-1"></i>14:45
+                                </span>
+                                <i class="fa-light fa-arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="modal-footer d-flex align-items-start">
             <span class="label fs-14px lh-1 fw-normal text-white opacity-75">Nhiệm vụ</span>
             <span class="text-end">
-                <p class="value fs-14px lh-1 fw-normal text-white mb-1">Quần áo bảo hộ</p>
+                <p class="value fs-14px lh-1 fw-normal text-white mb-1">Quần Áo bảo hộ</p>
                 <p class="value fs-14px lh-1 fw-normal text-white mb-1">Mũ bảo hộ</p>
             </span>
+            
         </div>
     `;
 
@@ -627,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // 8. PARKING DOT GRID
-const TOTAL = 60;
+const TOTAL = 50;
 const slots = [];
 
 for (let i = 0; i < TOTAL; i++) {

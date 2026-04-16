@@ -617,15 +617,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-
-
-
-
-
-
-
 // ==============================================================================
 // 5. MAP & ICON CAMERA HỆ THỐNG - HOẠT ẢNH CẢNH BÁO CAO CẤP
 // ==============================================================================
@@ -752,13 +743,13 @@ function initMapIcons() {
     // ==============================================================================
     // 5B. TÍNH NĂNG ZOOM VÀ KÉO THẢ MAP PAN/ZOOM (BẢN ĐỒ INTERACTIVE)
     // ==============================================================================
-    // Giúp người dùng có thể con lăn phóng to thu nhỏ và kéo lê tấm bản đồ giống Google Maps
     let currentZoom = 1;
     let panX = 0;
     let panY = 0;
     let isPanning = false;
     let startX = 0;
     let startY = 0;
+    let rafId = null;
 
     const applyMapTransform = () => {
         vignetteContainer.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
@@ -774,49 +765,87 @@ function initMapIcons() {
         currentZoom = 1;
         panX = 0;
         panY = 0;
-        vignetteContainer.style.transition = 'transform 0.3s ease-out';
+        vignetteContainer.style.transition = 'transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)';
         applyMapTransform();
     };
 
     if (btnZoomIn) btnZoomIn.onclick = () => {
-        currentZoom = Math.min(currentZoom + 0.25, 4);
+        currentZoom = Math.min(currentZoom + 0.1, 4);
         vignetteContainer.style.transition = 'transform 0.2s ease-out';
         applyMapTransform();
     };
 
     if (btnZoomOut) btnZoomOut.onclick = () => {
-        currentZoom = Math.max(currentZoom - 0.25, 0.5);
+        currentZoom = Math.max(currentZoom - 0.1, 0.4);
         vignetteContainer.style.transition = 'transform 0.2s ease-out';
         applyMapTransform();
     };
 
-    // Panning (Drag to Move)
+    // Panning (Drag to Move) - Optimized with RequestAnimationFrame
     vignetteContainer.addEventListener('mousedown', (e) => {
+        // Nếu click vào icon hoặc popup thì không pan
         if (e.target.closest('.map-icon') || e.target.closest('.map-popup')) return;
+
+        // Ngăn trình duyệt kéo ảnh mặc định (quan trọng để không bị dính chuột)
+        e.preventDefault();
+
         isPanning = true;
         startX = e.clientX - panX;
         startY = e.clientY - panY;
+
         vignetteContainer.style.cursor = 'grabbing';
-        vignetteContainer.style.transition = 'none'; // remove animation for smooth drag
+        vignetteContainer.style.transition = 'none';
+        vignetteContainer.style.userSelect = 'none'; // Khóa chọn văn bản
+        document.body.style.cursor = 'grabbing';
     });
 
     window.addEventListener('mousemove', (e) => {
         if (!isPanning) return;
+
         panX = e.clientX - startX;
         panY = e.clientY - startY;
-        applyMapTransform();
+
+        // Dùng requestAnimationFrame để render mượt hơn
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+            applyMapTransform();
+        });
     });
 
     window.addEventListener('mouseup', () => {
         if (isPanning) {
             isPanning = false;
             vignetteContainer.style.cursor = 'grab';
+            vignetteContainer.style.userSelect = '';
+            document.body.style.cursor = '';
         }
     });
+
+    // Mouse Wheel Zoom - SIÊU MƯỢT
+    vignetteContainer.style.willChange = 'transform';
+
+    vignetteContainer.addEventListener('wheel', (e) => {
+        e.preventDefault();
+
+        // Lấy giá trị delta thực tế để zoom mịn hơn
+        const scaleFactor = -e.deltaY * 0.001;
+        const newZoom = Math.min(Math.max(currentZoom + scaleFactor, 0.4), 4);
+
+        if (newZoom !== currentZoom) {
+            currentZoom = newZoom;
+            vignetteContainer.style.transition = 'none';
+            applyMapTransform();
+        }
+    }, { passive: false });
+
+    // Ngăn chặn mặc định khi kéo ảnh bên trong
+    img.addEventListener('dragstart', (e) => e.preventDefault());
 
     // Bắt đầu với cursor grab cho bản đồ
     vignetteContainer.style.cursor = 'grab';
 }
+
+
 // ==============================================================================
 // 6. POPUP BẢNG ĐIỀU KHIỂN CHI TIẾT CAMERA (MODAL)
 // ==============================================================================
@@ -852,41 +881,29 @@ function showCameraPopup(cam, iconEl) {
                 <h5 class="fs-14px lh-1 fw-medium text-white">Hôm nay</h5>
                 <span class="alert-badge min-width text-center fs-14px lh-1 fw-medium text-white py-1"><i class="me-2 fa-solid fa-bell"></i>05+</span>
             </div>
-            <div class="custom-scroll-light pe-1" data-overlayscrollbars-initialize style="max-height: 260px; overflow-x: hidden;">
-                <div class="snapshots row g-3 mx-0">
+            <div class="custom-scroll-light" data-overlayscrollbars-initialize style="max-height: 260px; overflow-x: hidden;">
+                <div class="snapshots row g-3">
+                    <!-- The Loading/Newest capture placeholder (Full skeleton integration) -->
                     <div class="col-4">
-                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
-                            <img src="img/scene-photo-1.jpg" alt="Snapshot 1" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100">
-                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
-                                    <i class="fa-regular fa-clock me-1"></i>
-                                    15:01 
-                                </span>
-                                <i class="fa-light fa-arrow-up-right"></i>
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative border border-white/5">
+                            <div class="skeleton-bg position-absolute top-0 start-0 w-100 h-100"></div>
+                            <div class="timestamp bg-muted p-2 position-absolute bottom-0 start-0 w-100 rounded-custom d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="skeleton-bar me-1 mb-0" style="width: 14px; height: 14px; border-radius: 50%;"></div>
+                                    <div class="skeleton-bar mb-0" style="width: 35px; height: 8px; border-radius: 2px;"></div>
+                                </div>
+                                <div class="skeleton-bar mb-0" style="width: 10px; height: 10px; border-radius: 2px;"></div>
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- Fixed historical data (No animation) -->
                     <div class="col-4">
                         <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
-                            <img src="img/scene-photo-2.png" alt="Snapshot 1" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-                            <div class="timestamp bg-azure-blue p-2 position-absolute bottom-0 start-0 w-100">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp-item bg-azure-blue p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
                                 <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
-                                    <i class="fa-regular fa-clock me-1"></i>
-                                    15:01 
-                                </span>
-                                <i class="fa-light fa-arrow-up-right"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-4">
-                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
-                            <img src="img/scene-photo-1.jpg" alt="Snapshot 1" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100">
-                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
-                                    <i class="fa-regular fa-clock me-1"></i>
-                                    15:01 
+                                    <i class="fa-regular fa-clock me-1"></i>15:01
                                 </span>
                                 <i class="fa-light fa-arrow-up-right"></i>
                             </div>
@@ -894,11 +911,10 @@ function showCameraPopup(cam, iconEl) {
                     </div>
                     <div class="col-4">
                         <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
-                            <img src="img/scene-photo-1.jpg" alt="Snapshot 1" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100">
+                            <img src="img/scene-photo-2.png" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp-item bg-blue p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
                                 <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
-                                    <i class="fa-regular fa-clock me-1"></i>
-                                    15:01 
+                                    <i class="fa-regular fa-clock me-1"></i>15:00
                                 </span>
                                 <i class="fa-light fa-arrow-up-right"></i>
                             </div>
@@ -906,11 +922,10 @@ function showCameraPopup(cam, iconEl) {
                     </div>
                     <div class="col-4">
                         <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
-                            <img src="img/scene-photo-1.jpg" alt="Snapshot 1" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp-item bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
                                 <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
-                                    <i class="fa-regular fa-clock me-1"></i>
-                                    15:01 
+                                    <i class="fa-regular fa-clock me-1"></i>14:55
                                 </span>
                                 <i class="fa-light fa-arrow-up-right"></i>
                             </div>
@@ -918,23 +933,32 @@ function showCameraPopup(cam, iconEl) {
                     </div>
                     <div class="col-4">
                         <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
-                            <img src="img/scene-photo-1.jpg" alt="Snapshot 1" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-                            <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp-item bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
                                 <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
-                                    <i class="fa-regular fa-clock me-1"></i>
-                                    15:01 
+                                    <i class="fa-regular fa-clock me-1"></i>14:50
                                 </span>
                                 <i class="fa-light fa-arrow-up-right"></i>
                             </div>
                         </div>
                     </div>
-                <div class="col-4">
-                    <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
-                        <img src="img/scene-photo-1.jpg" alt="Snapshot 1" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
-                        <div class="timestamp bg-orange p-2 position-absolute bottom-0 start-0 w-100">
-                            <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
-                                    <i class="fa-regular fa-clock me-1"></i>
-                                    15:01 
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp-item bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
+                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
+                                    <i class="fa-regular fa-clock me-1"></i>14:45
+                                </span>
+                                <i class="fa-light fa-arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="snapshot-card min-height rounded-1 overflow-hidden position-relative">
+                            <img src="img/scene-photo-1.jpg" alt="Snapshot" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+                            <div class="timestamp-item bg-orange p-2 position-absolute bottom-0 start-0 w-100 rounded-custom">
+                                <span class="d-flex align-items-center fs-12px lh-1 fw-normal text-white">
+                                    <i class="fa-regular fa-clock me-1"></i>14:45
                                 </span>
                                 <i class="fa-light fa-arrow-up-right"></i>
                             </div>
